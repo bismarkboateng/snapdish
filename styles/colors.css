@@ -1,0 +1,20 @@
+@theme {
+  --color-orange-base: #f7931e;
+  --color-orange-dark: #ea7600;
+  --color-orange-light: #fff0d9;
+
+  --color-background: #fff5e9;
+  --color-surface: #ffffff;
+
+  --color-text-primary: #333333;
+  --color-text-muted: #656565;
+
+  --color-border: #e0e0e0;
+
+  --color-success: #3ec70b;
+  --color-error: #e02e2e;
+
+  --color-orange-accent: #ff8e20;
+
+  --color-text-strong: #1f1f1f;
+}
