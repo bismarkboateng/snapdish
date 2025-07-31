@@ -44,3 +44,48 @@ export const loginUser = async (
     throw new Error("An unexpected error occurred during login");
   }
 };
+
+export const forgotPassword = async (email: string): Promise<void> => {
+  try {
+    const result = await http.post<{ email: string }, { message: string }>(
+      apiRoutes.auth.forgotPassword,
+      { email }
+    );
+
+    if ("data" in result) return;
+    return Promise.reject(
+      new Error(result.message ?? "Forgot password failed")
+    );
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("An unexpected error occurred during forgot password");
+  }
+};
+
+export const resetPassword = async ({
+  userId,
+  secret,
+  password,
+}: {
+  userId: string;
+  secret: string;
+  password: string;
+}): Promise<void> => {
+  try {
+    const result = await http.post(apiRoutes.auth.resetPassword, {
+      userId,
+      secret,
+      password,
+    });
+
+    if ("data" in result) return;
+    return Promise.reject(new Error(result.message ?? "Reset password failed"));
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("An unexpected error occurred during reset password");
+  }
+};

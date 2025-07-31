@@ -6,13 +6,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/atoms/form";
-import { useForgotPassword } from "./use-forgot-password";
+import { useForgotPasswordForm } from "./use-forgot-password";
 import { Input } from "@/components/atoms/input";
 import { Button } from "@/components/atoms/button/button";
 import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 const ForgotPasswordForm = () => {
-  const { form, handleSubmit } = useForgotPassword();
+  const { form, handleSubmit, isPending } = useForgotPasswordForm();
 
   return (
     <Form {...form}>
@@ -43,9 +44,11 @@ const ForgotPasswordForm = () => {
           type="submit"
           className="w-full h-10 lg:h-12 bg-[var(--color-orange-base)]
           hover:bg-[var(--color-orange-dark)] text-white font-semibold rounded-lg transition-colors
-          duration-200 shadow-sm hover:shadow-md text-sm lg:text-base cursor-pointer"
+          duration-200 shadow-sm hover:shadow-md text-sm lg:text-base cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed
+          disabled:bg-gray-300 disabled:hover:bg-gray-300"
+          disabled={isPending}
         >
-          Log In
+          {isPending ? <Loader2 /> : "Reset Password"}
         </Button>
         <p className="text-center text-sm">
           Back to{" "}

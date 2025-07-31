@@ -1,3 +1,5 @@
+import { useMutation } from "@tanstack/react-query";
+
 export interface RegisterUserDTO {
     fullName: string;
     email: string;
@@ -22,3 +24,7 @@ export interface LoginUserResponse {
     message: string;
     userId: string;
 }
+
+export type ForgotPasswordMutation = ReturnType<
+  typeof useMutation<void, Error, string>
+>;

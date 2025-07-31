@@ -1,7 +1,12 @@
-import { ResetPasswordForm } from '@/components/organisms/reset-password/reset-password'
+import { ResetPasswordContainer } from "@/components/organisms/reset-password/reset-password";
+import { Suspense } from "react";
 
 const ResetPasswordPage = () => {
-  return <ResetPasswordForm />
-}
+  return (
+    <Suspense>
+      <ResetPasswordContainer />
+    </Suspense>
+  );
+};
 
-export default ResetPasswordPage
+export default ResetPasswordPage;
