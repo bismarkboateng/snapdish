@@ -1,7 +1,7 @@
-import { ForgotPasswordForm } from "@/components/organisms/forgot-password/forgot-password";
+import { ForgotPasswordContainer } from "@/components/organisms/forgot-password/forgot-password";
 
 const ForgotPasswordPage = () => {
-  return <ForgotPasswordForm />;
+  return <ForgotPasswordContainer />;
 };
 
 export default ForgotPasswordPage;

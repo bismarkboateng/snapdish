@@ -1,7 +1,7 @@
-import { LoginForm } from "@/components/organisms/login/login";
+import { LoginContainer } from "@/components/organisms/login/login";
 
 const LoginPage = () => {
-  return <LoginForm />;
+  return <LoginContainer />;
 };
 
 export default LoginPage;
