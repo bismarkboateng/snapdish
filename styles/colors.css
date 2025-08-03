@@ -1,20 +1,35 @@
 @theme {
-  --color-orange-base: #f7931e;
-  --color-orange-dark: #ea7600;
-  --color-orange-light: #fff0d9;
+  /* Primary Colors */
+  --color-primary: #009379; /* Teal-green (used in buttons, accents) */
+  --color-primary-dark: #007566;
+  --color-primary-light: #d9f5f1;
 
-  --color-background: #fff5e9;
-  --color-surface: #ffffff;
+  /* Secondary Colors */
+  --color-secondary: #fddf89; /* Soft yellow (used in backgrounds) */
+  --color-secondary-dark: #f5c759;
+  --color-secondary-light: #fff9e9;
 
-  --color-text-primary: #333333;
-  --color-text-muted: #656565;
+  /* Background & Surface */
+  --color-background: #f5fefe; /* Soft aqua background */
+  --color-surface: #ffffff; /* Card and panel background */
 
-  --color-border: #e0e0e0;
+  /* Text Colors */
+  --color-text-primary: #1f1f1f;
+  --color-text-muted: #6e6e6e;
+  --color-text-light: #9e9e9e;
 
+  /* Border */
+  --color-border: #e5e7eb; /* Light gray border */
+
+  /* Accent Colors */
+  --color-accent-orange: #ffb84c; /* Used for icons or small highlights */
+  --color-accent-pink: #ffe2e2;   /* Used subtly in testimonial section */
+  
+  /* Status Colors */
   --color-success: #3ec70b;
   --color-error: #e02e2e;
+  --color-info: #53b6ff;
 
-  --color-orange-accent: #ff8e20;
-
-  --color-text-strong: #1f1f1f;
+  /* Shadows */
+  --shadow-default: 0 4px 6px rgba(0, 0, 0, 0.06);
 }

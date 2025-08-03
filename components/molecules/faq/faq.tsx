@@ -1,73 +1,50 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { faqData } from "./faq.mock";
+import React from "react";
+import FaqFooter from "./faq-footer";
+import FaqContent from "./faq-content";
 
 export const Faq: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
-  const toggle = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
-
   return (
-    <section className="py-20 bg-[var(--color-background)]">
-      <div className="max-w-4xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-text-strong)] mb-12 text-center">
-          Frequently Asked Questions
-        </h2>
-        <div className="space-y-6">
-          {faqData.map((item, index) => (
-            <div
-              key={index}
-              className="border border-[var(--color-border)] rounded-lg overflow-hidden"
-            >
-              <button
-                onClick={() => toggle(index)}
-                className="w-full flex justify-between items-center text-left p-4 bg-[var(--color-surface)] hover:bg-[var(--color-orange-light)] transition-colors"
-              >
-                <span className="font-medium text-[var(--color-text-primary)]">
-                  {item.question}
-                </span>
-                <span className="text-[var(--color-text-muted)]">
-                  {activeIndex === index ? "−" : "+"}
-                </span>
-              </button>
+    <section className="relative py-24 overflow-hidden">
+      <div
+        className="absolute inset-0 bg-gradient-to-br
+      from-[var(--color-background)] via-[var(--color-secondary-light)]/20 to-[var(--color-primary-light)]/10"
+      />
 
-              <AnimatePresence initial={false}>
-                {activeIndex === index && (
-                  <motion.div
-                    key="content"
-                    initial={{
-                      opacity: 0,
-                      height: 0,
-                      paddingTop: 0,
-                      paddingBottom: 0,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      height: "auto",
-                      paddingTop: "1rem",
-                      paddingBottom: "1rem",
-                    }}
-                    exit={{
-                      opacity: 0,
-                      height: 0,
-                      paddingTop: 0,
-                      paddingBottom: 0,
-                    }}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    style={{ overflow: "hidden" }}
-                    className="px-4 bg-[var(--color-orange-light)] text-[var(--color-text-muted)]"
-                  >
-                    {item.answer}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
+      <div className="absolute top-20 left-16 w-28 h-28 bg-[var(--color-primary)]/10 rounded-full blur-2xl animate-pulse" />
+      <div className="absolute bottom-20 right-16 w-36 h-36 bg-[var(--color-secondary)]/15 rounded-full blur-3xl animate-bounce" />
+
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
+        <div className="text-center mb-20">
+          <div
+            className="inline-flex items-center px-4 py-2 rounded-full bg-[var(--color-primary-light)]
+          text-[var(--color-primary-dark)] text-sm font-medium mb-6 shadow-[var(--shadow-default)]"
+          >
+            <span className="w-2 h-2 bg-[var(--color-info)] rounded-full mr-2 animate-pulse"></span>{" "}
+            Got Questions?
+          </div>
+
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <span className="text-[var(--color-text-primary)]">
+              Frequently Asked
+            </span>
+            <br />
+            <span
+              className="bg-gradient-to-r from-[var(--color-primary)]
+            via-[var(--color-primary-dark)] to-[var(--color-accent-orange)] bg-clip-text text-transparent"
+            >
+              Questions
+            </span>
+          </h2>
+
+          <p className="text-xl md:text-2xl text-[var(--color-text-muted)] max-w-3xl mx-auto leading-relaxed">
+            Find answers to common questions about SnapDish and how we help
+            reduce food waste
+          </p>
         </div>
+        <FaqContent />
+        <FaqFooter />
       </div>
     </section>
   );
