@@ -22,166 +22,193 @@ const RegisterForm = () => {
     setShowPassword,
     showConfirmPassword,
     setShowConfirmPassword,
-    isPending
+    isPending,
   } = useRegisterForm();
 
   return (
-    <Form {...form}>
-      <form onSubmit={handleSubmit} className="space-y-3 lg:space-y-4">
-        <FormField
-          control={form.control}
-          name="fullName"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-[var(--color-text-primary)] text-sm font-medium">
-                Name
-              </FormLabel>
-              <FormControl>
-                <Input
-                  type="text"
-                  {...field}
-                  placeholder="Alex Jordan"
-                  className="h-10 lg:h-12 px-3 lg:px-4 bg-[var(--color-surface)] border border-gray-200 rounded-lg
-                  focus:border-[var(--color-orange-base)] focus:ring-2 focus:ring-[var(--color-orange-base)]/20
-                  transition-all duration-200 text-sm lg:text-base"
-                />
-              </FormControl>
-              <FormMessage className="text-destructive text-sm" />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-[var(--color-text-primary)] text-sm font-medium">
-                Email
-              </FormLabel>
-              <FormControl>
-                <Input
-                  type="email"
-                  {...field}
-                  placeholder="alex.jordan@gmail.com"
-                  className="h-10 lg:h-12 px-3 lg:px-4 bg-[var(--color-surface)] border border-gray-200
-                  rounded-lg focus:border-[var(--color-orange-base)] focus:ring-2 focus:ring-[var(--color-orange-base)]/20
-                  transition-all duration-200 text-sm lg:text-base"
-                />
-              </FormControl>
-              <FormMessage className="text-destructive text-sm" />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="password"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-[var(--color-text-primary)] text-sm font-medium">
-                Password
-              </FormLabel>
-              <FormControl>
-                <div className="relative">
+    <div className="bg-[var(--color-surface)] rounded-3xl p-8 shadow-[var(--shadow-default)] border border-[var(--color-border)]/50">
+      <Form {...form}>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <FormField
+            control={form.control}
+            name="fullName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-[var(--color-text-primary)] text-sm font-semibold">
+                  Full Name
+                </FormLabel>
+                <FormControl>
                   <Input
-                    type={showPassword ? "text" : "password"}
+                    type="text"
                     {...field}
-                    placeholder="••••••••"
-                    className="h-10 lg:h-12 px-3 lg:px-4 pr-10 bg-[var(--color-surface)] border border-gray-200
-            rounded-lg focus:border-[var(--color-orange-base)] focus:ring-2 focus:ring-[var(--color-orange-base)]/20
-            transition-all duration-200 text-sm lg:text-base"
+                    placeholder="Alex Jordan"
+                    className="h-12 px-4 bg-[var(--color-background)] border border-[var(--color-border)] rounded-xl
+                    focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20
+                    transition-all duration-300 text-base hover:border-[var(--color-primary)]/50"
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                    tabIndex={-1}
-                  >
-                    {showPassword ? (
-                      <EyeOff className="w-4 h-4" />
-                    ) : (
-                      <Eye className="w-4 h-4" />
-                    )}
-                  </button>
-                </div>
-              </FormControl>
-              <FormMessage className="text-destructive text-sm" />
-            </FormItem>
-          )}
-        />
+                </FormControl>
+                <FormMessage className="text-[var(--color-error)] text-sm" />
+              </FormItem>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name="confirmPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-[var(--color-text-primary)] text-sm font-medium">
-                Confirm password
-              </FormLabel>
-              <FormControl>
-                <div className="relative">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-[var(--color-text-primary)] text-sm font-semibold">
+                  Email Address
+                </FormLabel>
+                <FormControl>
                   <Input
-                    type={showConfirmPassword ? "text" : "password"}
+                    type="email"
                     {...field}
-                    placeholder="••••••••"
-                    className="h-10 lg:h-12 px-3 lg:px-4 pr-10 bg-[var(--color-surface)] border border-gray-200
-            rounded-lg focus:border-[var(--color-orange-base)] focus:ring-2 focus:ring-[var(--color-orange-base)]/20
-            transition-all duration-200 text-sm lg:text-base"
+                    placeholder="alex.jordan@gmail.com"
+                    className="h-12 px-4 bg-[var(--color-background)] border border-[var(--color-border)] rounded-xl
+                    focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20
+                    transition-all duration-300 text-base hover:border-[var(--color-primary)]/50"
                   />
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirmPassword((prev) => !prev)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                    tabIndex={-1}
-                  >
-                    {showConfirmPassword ? (
-                      <EyeOff className="w-4 h-4" />
-                    ) : (
-                      <Eye className="w-4 h-4" />
-                    )}
-                  </button>
-                </div>
-              </FormControl>
-              <FormMessage className="text-destructive text-sm" />
-            </FormItem>
-          )}
-        />
+                </FormControl>
+                <FormMessage className="text-[var(--color-error)] text-sm" />
+              </FormItem>
+            )}
+          />
 
-        <Button
-          type="submit"
-          className="w-full h-10 lg:h-12 bg-[var(--color-orange-base)]
-          hover:bg-[var(--color-orange-dark)] text-white font-semibold rounded-lg transition-colors
-          duration-200 shadow-sm hover:shadow-md text-sm lg:text-base cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed
-          disabled:bg-gray-300"
-          disabled={isPending}
-        >
-          {isPending ? <Loader2 className="animate-spin" /> : "Register an account"}
-        </Button>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-[var(--color-text-primary)] text-sm font-semibold">
+                  Password
+                </FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <Input
+                      type={showPassword ? "text" : "password"}
+                      {...field}
+                      placeholder="••••••••"
+                      className="h-12 px-4 pr-12 bg-[var(--color-background)] border border-[var(--color-border)] rounded-xl
+                      focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20
+                      transition-all duration-300 text-base hover:border-[var(--color-primary)]/50"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((prev) => !prev)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
+                      tabIndex={-1}
+                    >
+                      {showPassword ? (
+                        <EyeOff className="w-5 h-5" />
+                      ) : (
+                        <Eye className="w-5 h-5" />
+                      )}
+                    </button>
+                  </div>
+                </FormControl>
+                <FormMessage className="text-[var(--color-error)] text-sm" />
+              </FormItem>
+            )}
+          />
 
-        <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-200"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-gray-100 text-[var(--color-text-muted)]">
-              OR
-            </span>
-          </div>
-        </div>
-        <GoogleButton label="Register with google" />
-        <div className="text-center text-sm text-[var(--color-text-muted)] mt-6">
-          Have an account?{" "}
-          <Link
-            href="/login"
-            className="text-[var(--color-orange-accent)] hover:text-[var(--color-orange-base)]
-            font-medium hover:underline transition-colors duration-200"
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-[var(--color-text-primary)] text-sm font-semibold">
+                  Confirm Password
+                </FormLabel>
+                <FormControl>
+                  <div className="relative">
+                    <Input
+                      type={showConfirmPassword ? "text" : "password"}
+                      {...field}
+                      placeholder="••••••••"
+                      className="h-12 px-4 pr-12 bg-[var(--color-background)] border border-[var(--color-border)] rounded-xl
+                      focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[var(--color-primary)]/20
+                      transition-all duration-300 text-base hover:border-[var(--color-primary)]/50"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword((prev) => !prev)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
+                      tabIndex={-1}
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff className="w-5 h-5" />
+                      ) : (
+                        <Eye className="w-5 h-5" />
+                      )}
+                    </button>
+                  </div>
+                </FormControl>
+                <FormMessage className="text-[var(--color-error)] text-sm" />
+              </FormItem>
+            )}
+          />
+
+          <Button
+            type="submit"
+            className="w-full h-12 font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            style={{
+              background: `linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)`,
+              boxShadow: "var(--shadow-default)",
+            }}
+            disabled={isPending}
           >
-            Log in
-          </Link>
-        </div>
-      </form>
-    </Form>
+            {isPending ? (
+              <div className="flex items-center justify-center">
+                <Loader2 className="animate-spin w-5 h-5 mr-2" />
+                Creating Account...
+              </div>
+            ) : (
+              <div className="flex items-center justify-center">
+                Create Account
+                <svg
+                  className="w-5 h-5 ml-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </div>
+            )}
+          </Button>
+
+          <div className="relative my-8">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-[var(--color-border)]"></div>
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-4 bg-[var(--color-surface)] text-[var(--color-text-muted)] font-medium">
+                OR
+              </span>
+            </div>
+          </div>
+
+          <GoogleButton label="Continue with Google" />
+
+          <div className="text-center text-base text-[var(--color-text-muted)] mt-8">
+            Already have an account?{" "}
+            <Link
+              href="/login"
+              className="text-[var(--color-primary)] hover:text-[var(--color-primary-dark)]
+              font-semibold hover:underline transition-colors duration-200"
+            >
+              Sign In
+            </Link>
+          </div>
+        </form>
+      </Form>
+    </div>
   );
 };
 
