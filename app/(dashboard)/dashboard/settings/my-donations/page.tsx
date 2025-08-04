@@ -1,9 +1,7 @@
-import React from 'react'
+import MyDonations from "@/components/organisms/my-donations/my-donations";
 
-const MyDonations = () => {
-  return (
-    <div>MyDonations</div>
-  )
-}
+const MyDonationsPage = () => {
+  return <MyDonations />;
+};
 
-export default MyDonations
+export default MyDonationsPage;

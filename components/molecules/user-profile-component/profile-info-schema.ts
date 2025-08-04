@@ -12,3 +12,9 @@ export const profileInfoSchema = z.object({
 });
 
 export type ProfileFormValues = z.infer<typeof profileInfoSchema>;
+
+export const profileInfoInitialValues = {
+  fullName: "Evans Boadi",
+  email: "evans@gmail.com",
+  phone: "+233591151759",
+};

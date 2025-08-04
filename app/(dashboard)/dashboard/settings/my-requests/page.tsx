@@ -1,9 +1,7 @@
-import React from 'react'
+import MyRequests from "@/components/organisms/my-requests/my-requests";
 
-const MyRequests = () => {
-  return (
-    <div>MyRequests</div>
-  )
-}
+const MyRequestsPage = () => {
+  return <MyRequests />;
+};
 
-export default MyRequests
+export default MyRequestsPage;

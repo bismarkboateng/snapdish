@@ -1,35 +1,28 @@
 @theme {
-  /* Primary Colors */
-  --color-primary: #009379; /* Teal-green (used in buttons, accents) */
+  --color-primary: #009379;
   --color-primary-dark: #007566;
   --color-primary-light: #d9f5f1;
 
-  /* Secondary Colors */
-  --color-secondary: #fddf89; /* Soft yellow (used in backgrounds) */
+  --color-secondary: #fddf89;
   --color-secondary-dark: #f5c759;
   --color-secondary-light: #fff9e9;
 
-  /* Background & Surface */
-  --color-background: #f5fefe; /* Soft aqua background */
-  --color-surface: #ffffff; /* Card and panel background */
+  --color-background: #f5fefe;
+  --color-surface: #ffffff;
 
-  /* Text Colors */
   --color-text-primary: #1f1f1f;
   --color-text-muted: #6e6e6e;
   --color-text-light: #9e9e9e;
 
-  /* Border */
-  --color-border: #e5e7eb; /* Light gray border */
+  --color-border: #e5e7eb;
 
-  /* Accent Colors */
-  --color-accent-orange: #ffb84c; /* Used for icons or small highlights */
-  --color-accent-pink: #ffe2e2;   /* Used subtly in testimonial section */
+  --color-accent-orange: #ffb84c;
+  --color-accent-pink: #ffe2e2;
   
-  /* Status Colors */
+
   --color-success: #3ec70b;
   --color-error: #e02e2e;
   --color-info: #53b6ff;
 
-  /* Shadows */
   --shadow-default: 0 4px 6px rgba(0, 0, 0, 0.06);
 }

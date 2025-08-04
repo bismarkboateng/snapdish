@@ -13,16 +13,16 @@ import { Button } from "@/components/atoms/button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
-import { ProfileFormValues, profileInfoSchema } from "./profile-info-schema";
+import {
+  ProfileFormValues,
+  profileInfoInitialValues,
+  profileInfoSchema,
+} from "./profile-info-schema";
 
 export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileInfoSchema),
-    defaultValues: {
-      fullName: "John Doe",
-      email: "john@example.com",
-      phone: "+233501234567",
-    },
+    defaultValues: profileInfoInitialValues,
   });
 
   const onSubmit = (values: ProfileFormValues) => {
@@ -30,7 +30,7 @@ export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
     // Send to API or backend handler
   };
 
-  const joinedDate = new Date(2023, 0, 15); // Just a placeholder
+  const joinedDate = new Date(2023, 0, 15);
 
   return (
     <Form {...form}>
@@ -44,7 +44,7 @@ export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
               <FormControl>
                 <Input
                   disabled={!isEditing}
-                  placeholder="John Doe"
+                  placeholder="Evans Boadi"
                   {...field}
                 />
               </FormControl>
@@ -63,7 +63,7 @@ export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
                 <Input
                   disabled={!isEditing}
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="evans@gmail.com"
                   {...field}
                 />
               </FormControl>
@@ -82,7 +82,7 @@ export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
                 <Input
                   disabled={!isEditing}
                   type="tel"
-                  placeholder="+233501234567"
+                  placeholder="+233591151759"
                   {...field}
                 />
               </FormControl>

@@ -1,20 +1,20 @@
-import { Calendar, Home, Inbox, Settings } from "lucide-react";
+import { Home, Heart, HandHeart, Settings } from "lucide-react";
 
 export const items = [
   {
-    title: "Home",
+    title: "Dashboard",
     route: "/dashboard",
     icon: Home,
   },
   {
     title: "Donate Food",
-    route: "#",
-    icon: Inbox,
+    route: "/dashboard/donate-food",
+    icon: Heart,
   },
   {
     title: "Request Food",
-    route: "#",
-    icon: Calendar,
+    route: "/dashboard/request-food",
+    icon: HandHeart,
   },
   {
     title: "Settings",
