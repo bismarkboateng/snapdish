@@ -23,32 +23,47 @@ import DonateFoodContact from "./donate-food-contact";
 import DonateFoodDietryInfo from "./donate-food-dietry-info";
 import DonateFoodSteps from "./donate-food-steps";
 
+import { useCreateDonation } from "@/features/donations/hooks/use-create-donation";
+import { CreateDonationDTO } from "@/features/donations/types";
+
 export const DonateFoodForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-
+  
   const form = useForm<DonationFormData>({
     resolver: zodResolver(donationSchema),
     defaultValues: donationFormInitialValues,
   });
-
+  
   const { currentStep, setCurrentStep, nextStep, prevStep } =
-    useDonateFoodSteps(form);
+  useDonateFoodSteps(form);
+
+  const { mutate: createDonation } = useCreateDonation({ 
+    form, 
+    setCurrentStep, 
+    setSubmitSuccess, 
+    setIsSubmitting 
+  });
 
   const onSubmit = async (data: DonationFormData) => {
     setIsSubmitting(true);
-
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    console.log("Donation submitted:", data);
-    setSubmitSuccess(true);
-    setIsSubmitting(false);
-
-    setTimeout(() => {
-      form.reset();
-      setCurrentStep(0);
-      setSubmitSuccess(false);
-    }, 3000);
+    
+    const donationData: CreateDonationDTO = {
+      title: data.title,
+      description: data.description,
+      foodType: data.foodType,
+      quantity: data.quantity,
+      location: data.location,
+      expiresAt: data.expiresAt,
+      availablePickupTimes: data.availablePickupTimes,
+      contactMethod: data.contactMethod as "phone" | "email",
+      phone: data.phone,
+      email: data.email,
+      dietaryInfo: data.dietaryInfo || [],
+      specialInstructions: data.specialInstructions,
+    };
+    
+    createDonation(donationData);
   };
 
   if (submitSuccess) {
@@ -84,7 +99,10 @@ export const DonateFoodForm = () => {
             <Button
               type="button"
               variant="outline"
-              onClick={prevStep}
+              onClick={(e) => {
+                e.preventDefault();
+                prevStep();
+              }}
               disabled={currentStep === 0}
               className="border-[#e5e7eb] hover:bg-[var(--color-background)]"
             >
@@ -95,7 +113,11 @@ export const DonateFoodForm = () => {
               {currentStep < steps.length - 1 ? (
                 <Button
                   type="button"
-                  onClick={nextStep}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    console.log("Next Step clicked! Current step:", currentStep, "Steps length:", steps.length);
+                    nextStep();
+                  }}
                   className="bg-[#009379] hover:bg-[#007566] text-white"
                 >
                   Next Step

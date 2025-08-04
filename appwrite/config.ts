@@ -1,4 +1,4 @@
-import { Client, Account, ID } from "node-appwrite";
+import { Client, Account, ID, Databases } from "node-appwrite";
 import {
   APPWRITE_ENDPOINT,
   APPWRITE_PROJECT_ID,
@@ -13,4 +13,5 @@ client
   .setKey(APPWRITE_SESSION_API_KEY);
 
 export const account = new Account(client);
+export const databases = new Databases(client);
 export { ID };

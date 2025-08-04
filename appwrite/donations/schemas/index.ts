@@ -14,18 +14,3 @@ export const donationSchema = z.object({
   dietaryInfo: z.array(z.string()).optional(),
   specialInstructions: z.string().optional(),
 });
-
-export const donationFormInitialValues = {
-  title: "",
-  description: "",
-  foodType: "",
-  quantity: "",
-  location: "",
-  expiresAt: "",
-  dietaryInfo: [],
-  contactMethod: "",
-  phone: "",
-  email: "",
-  availablePickupTimes: "",
-  specialInstructions: "",
-};

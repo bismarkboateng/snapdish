@@ -1,3 +1,8 @@
 export const APPWRITE_ENDPOINT = process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!;
 export const APPWRITE_PROJECT_ID = process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!;
-export const APPWRITE_SESSION_API_KEY = process.env.APPWRITE_SESSION_API_KEY!
+export const APPWRITE_SESSION_API_KEY = process.env.APPWRITE_SESSION_API_KEY!;
+export const DATABASE_ID = process.env.DATABASE_ID!;
+
+export const COLLECTIONS = {
+  DONATIONS: process.env.DONATION_COLLECTION_ID!,
+};
