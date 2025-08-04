@@ -16,23 +16,7 @@ const useDonateFoodSteps = (
   const [currentStep, setCurrentStep] = useState<number>(0);
 
   const nextStep = async (): Promise<void> => {
-    const fieldsToValidate: (
-      | "title"
-      | "description"
-      | "foodType"
-      | "quantity"
-      | "location"
-      | "expiresAt"
-      | "tags"
-      | "dietaryInfo"
-      | "contactMethod"
-      | "phone"
-      | "email"
-      | "availablePickupTimes"
-      | "specialInstructions"
-      | `tags.${number}`
-      | `dietaryInfo.${number}`
-    )[] = getFieldsForStep(currentStep);
+    const fieldsToValidate = getFieldsForStep(currentStep);
     const isValid: boolean = await form.trigger(fieldsToValidate);
 
     if (isValid && currentStep < steps.length - 1) {

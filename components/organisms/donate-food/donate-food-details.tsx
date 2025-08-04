@@ -15,10 +15,9 @@ import {
   SelectValue,
 } from "@/components/atoms/select";
 import { Textarea } from "@/components/atoms/textarea";
-import { availableTags, foodTypes } from "./donate-food.utils";
-import { Checkbox } from "@/components/atoms/checkbox";
 import { UseFormReturn } from "react-hook-form";
 import { DonationFormData } from "./donate-food.types";
+import { foodTypes } from "./donate-food.utils";
 
 const DonateFoodDetails = ({
   form,
@@ -121,48 +120,6 @@ const DonateFoodDetails = ({
           )}
         />
       </div>
-
-      <FormField
-        control={form.control}
-        name="tags"
-        render={() => (
-          <FormItem>
-            <FormLabel className="text-[#1f1f1f] font-medium">Tags</FormLabel>
-            <FormDescription className="text-[#6e6e6e]">
-              Select all that apply to help people find your donation
-            </FormDescription>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
-              {availableTags.map((tag) => (
-                <FormField
-                  key={tag}
-                  control={form.control}
-                  name="tags"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value?.includes(tag)}
-                          onCheckedChange={(checked) => {
-                            return checked
-                              ? field.onChange([...field.value, tag])
-                              : field.onChange(
-                                  field.value?.filter((value) => value !== tag)
-                                );
-                          }}
-                        />
-                      </FormControl>
-                      <FormLabel className="text-sm font-normal">
-                        {tag}
-                      </FormLabel>
-                    </FormItem>
-                  )}
-                />
-              ))}
-            </div>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
     </div>
   );
 };

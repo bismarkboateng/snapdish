@@ -2,7 +2,6 @@ import { MapPin, Users, Package, Heart } from "lucide-react";
 import { DonationFormData } from "./donate-food.types";
 
 export const foodTypes = [
-  "Prepared Meals",
   "Fresh Vegetables",
   "Fresh Fruits",
   "Dairy Products",
@@ -55,19 +54,17 @@ export const steps = [
     description: "How should recipients contact you",
     icon: Users,
   },
-  { 
+  {
     title: "Additional Details",
     description: "Any special instructions or notes",
     icon: Heart,
   },
 ];
 
-export const getFieldsForStep = (
-  step: number
-): (keyof DonationFormData)[] => {
+export const getFieldsForStep = (step: number): (keyof DonationFormData)[] => {
   switch (step) {
     case 0:
-      return ["title", "description", "foodType", "quantity", "tags"];
+      return ["title", "description", "foodType", "quantity"];
     case 1:
       return ["location", "expiresAt", "availablePickupTimes"];
     case 2:
