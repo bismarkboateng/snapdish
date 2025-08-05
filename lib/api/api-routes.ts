@@ -31,6 +31,7 @@ export const apiRoutes = {
       all: withDonations(),
       create: withDonations("/create"),
       request: withDonations("/request-donation"),
+      my: withDonations("/my-donations"),
       // detail: (id: string) => withDonations(`/${id}`),
       // update: (id: string) => withDonations(`/${id}/update`),
       // delete: (id: string) => withDonations(`/${id}/delete`),

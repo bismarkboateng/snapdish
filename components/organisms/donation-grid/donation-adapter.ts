@@ -38,7 +38,6 @@ export function transformAppwriteDonation(doc: Models.Document): Donation {
     receivers: donationDoc.receivers ?? null,
     isClaimed: donationDoc.isClaimed ?? false,
     image: donationDoc.image,
-    tags: donationDoc.tags ?? [],
   };
 }
 

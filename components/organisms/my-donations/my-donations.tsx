@@ -6,6 +6,7 @@ import MyDonationsStats from "@/components/organisms/my-donations/my-donations-s
 import MyDonationsSearchFilter from "@/components/organisms/my-donations/my-donations-search-filter";
 
 import useDonations from "./use-donations";
+import { GlobalLoader } from "@/components/molecules/global-loader/global-loader";
 
 const MyDonations = () => {
   const {
@@ -14,7 +15,14 @@ const MyDonations = () => {
     statusFilter,
     setStatusFilter,
     filteredDonations,
+    isPending,
   } = useDonations();
+
+  if (isPending) {
+    return (
+      <GlobalLoader isVisible={isPending} message="Loading your donations" />
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -26,7 +34,7 @@ const MyDonations = () => {
           </p>
         </div>
       </div>
-      <MyDonationsStats />
+      <MyDonationsStats donations={filteredDonations} />
       <MyDonationsSearchFilter
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}

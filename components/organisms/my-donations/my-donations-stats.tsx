@@ -1,6 +1,11 @@
-import { getStatusCount } from "./my-donations-utils";
+import { Donation } from "./my-donations.types";
 
-const MyDonationsStats = () => {
+const MyDonationsStats = ({ donations }: { donations: Donation[] }) => {
+
+ const getStatusCount = (status: string) => {
+    if (status === "all") return donations.length;
+    return donations.filter((d) => d.status === status).length;
+  };
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <div className="bg-[var(--color-surface)] rounded-2xl p-4 border border-[var(--color-border)]">

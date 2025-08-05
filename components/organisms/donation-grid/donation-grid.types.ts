@@ -46,5 +46,4 @@ export interface DonationDocument extends Models.Document {
   receivers?: string[] | null;
   isClaimed?: boolean;
   image?: string;
-  tags?: string[];
 }

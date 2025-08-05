@@ -67,3 +67,22 @@ export const requestDonation = async (data: {
     throw new Error("An unexpected error occurred while requesting donation");
   }
 };
+
+export const getMyDonations = async (): Promise<AppwriteDonationsResponse> => {
+  try {
+    const result = await http.get<AppwriteDonationsResponse>(
+      apiRoutes.donations.my
+    );
+    console.log(result)
+
+    if ("data" in result) return result.data!;
+    return Promise.reject(
+      new Error(result.message ?? "Fetching my donations failed")
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("An unexpected error occurred while fetching my donations");
+  }
+};

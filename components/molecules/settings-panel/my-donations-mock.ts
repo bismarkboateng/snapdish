@@ -13,7 +13,7 @@ export interface Donation {
   dietaryInfo: string[];
   specialInstructions?: string;
   donorId: string;
-  status: "active" | "claimed" | "expired";
+  status: "requested" | "active" | "claimed" | "expired";
   receivers: string[] | null;
   createdAt: string;
   isClaimed: boolean;
