@@ -31,6 +31,7 @@ export const getStatusColor = (status: Donation["status"]): string => {
     active: "text-[#3ec70b] bg-[#3ec70b]/10",
     claimed: "text-[#ffb84c] bg-[#ffb84c]/10",
     expired: "text-[#6e6e6e] bg-[#6e6e6e]/10",
+    requested: "text-[#2196f3] bg-[#2196f3]/10",
   };
 
   return statusColors[status] || statusColors.active;
@@ -41,6 +42,7 @@ export const getStatusLabel = (status: Donation["status"]): string => {
     active: "Available",
     claimed: "Claimed",
     expired: "Expired",
+    requested: "Requested",
   };
 
   return statusLabels[status] || "Available";
