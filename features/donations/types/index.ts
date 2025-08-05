@@ -40,3 +40,18 @@ export interface UseCreateDonationProps {
     setSubmitSuccess: (success: boolean) => void;
     setIsSubmitting: (isSubmitting: boolean) => void;
 }
+
+export interface RequestDonationResponse {
+  success: boolean;
+  data: RequestDonationData;
+}
+
+export interface RequestDonationData {
+  donatedItemId: string;
+  userId: string;
+  message: string;
+}
+
+export interface RequestDonationDTO {
+  id: string;
+}

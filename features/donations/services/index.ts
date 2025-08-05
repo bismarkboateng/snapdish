@@ -1,6 +1,12 @@
 import { http } from "@/lib/api/api-http-client";
 import { apiRoutes } from "@/lib/api/api-routes";
-import { CreateDonationDTO, DonationResponse, AppwriteDonationsResponse } from "../types";
+import {
+  CreateDonationDTO,
+  DonationResponse,
+  AppwriteDonationsResponse,
+  RequestDonationResponse,
+  RequestDonationDTO,
+} from "../types";
 
 export const createDonation = async (
   data: CreateDonationDTO
@@ -25,7 +31,9 @@ export const createDonation = async (
 
 export const getDonations = async (): Promise<AppwriteDonationsResponse> => {
   try {
-    const result = await http.get<AppwriteDonationsResponse>(apiRoutes.donations.all);
+    const result = await http.get<AppwriteDonationsResponse>(
+      apiRoutes.donations.all
+    );
 
     if ("data" in result) return result.data!;
     return Promise.reject(
@@ -36,5 +44,26 @@ export const getDonations = async (): Promise<AppwriteDonationsResponse> => {
       throw new Error(error.message);
     }
     throw new Error("An unexpected error occurred while fetching donations");
+  }
+};
+
+export const requestDonation = async (data: {
+  id: string;
+}): Promise<RequestDonationResponse> => {
+  try {
+    const result = await http.patch<
+      RequestDonationDTO,
+      RequestDonationResponse
+    >(apiRoutes.donations.request, data);
+
+    if ("data" in result) return result.data!;
+    return Promise.reject(
+      new Error(result.message ?? "Requesting donation failed")
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("An unexpected error occurred while requesting donation");
   }
 };

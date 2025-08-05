@@ -11,22 +11,25 @@ import {
 
 import { Separator } from "@/components/atoms/separator";
 import { RequestModalProps } from "./donation-grid.types";
+import { useRequestDonation } from "@/features/donations/hooks/use-request-donation";
 
 export default function RequestModal({
   isOpen,
   onClose,
   donation,
 }: Readonly<RequestModalProps>) {
+  const { mutate: requestDonation, isPending } = useRequestDonation(onClose);
   if (!donation) return null;
 
   const handleRequest = () => {
-    console.log("Requesting donation:", donation.id);
-    onClose();
+    requestDonation({
+      id: donation.id,
+    });
   };
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent>
+      <SheetContent className=" px-6">
         <SheetHeader>
           <SheetTitle>Request Food Donation</SheetTitle>
           <SheetDescription>
@@ -65,7 +68,7 @@ export default function RequestModal({
               <span className="text-muted-foreground">Expires:</span>
               <span>{new Date(donation.expiresAt).toLocaleDateString()}</span>
             </div>
-            
+
             <div className="flex justify-between">
               <span className="text-muted-foreground">Contact:</span>
               <span>
@@ -74,7 +77,7 @@ export default function RequestModal({
                 {donation.contactMethod === "both" && "Email & Phone available"}
               </span>
             </div>
-            
+
             {donation.dietaryInfo && donation.dietaryInfo.length > 0 && (
               <div>
                 <span className="text-muted-foreground">Dietary Info:</span>
@@ -96,8 +99,12 @@ export default function RequestModal({
             <>
               <Separator />
               <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
-                <p className="text-xs text-blue-600 font-medium mb-1">Special Instructions</p>
-                <p className="text-sm text-blue-800">{donation.specialInstructions}</p>
+                <p className="text-xs text-blue-600 font-medium mb-1">
+                  Special Instructions
+                </p>
+                <p className="text-sm text-blue-800">
+                  {donation.specialInstructions}
+                </p>
               </div>
             </>
           )}
@@ -105,8 +112,13 @@ export default function RequestModal({
           <Separator />
 
           <div className="flex gap-2 pt-4">
-            <Button onClick={handleRequest} className="flex-1">
-              Send Request
+            <Button
+              onClick={handleRequest}
+              className={`flex-1 bg-[#009379] hover:bg-[var(--color-primary-dark)] text-white cursor-pointer
+                ${isPending ? "opacity-50 cursor-not-allowed" : ""}`}
+              disabled={isPending}
+            >
+              {isPending ? "Requesting..." : "Request Food"}
             </Button>
             <Button variant="outline" onClick={onClose} className="flex-1">
               Cancel
