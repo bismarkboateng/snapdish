@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "@/styles/globals.css";
 import { Toaster } from "@/components/atoms/sonner";
 import { ReactQueryProvider } from "@/providers/react-query-provider";
+import { LoadingWrapper } from "@/components/molecules/loading-wrapper/loading-wrapper";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,10 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
-        <ReactQueryProvider>
-          {children}
-          <Toaster expand={true} position="top-right" richColors={true} />
-        </ReactQueryProvider>
+        <LoadingWrapper>
+          <ReactQueryProvider>
+            {children}
+            <Toaster expand={true} position="top-right" richColors={true} />
+          </ReactQueryProvider>
+        </LoadingWrapper>
       </body>
     </html>
   );

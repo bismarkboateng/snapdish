@@ -30,6 +30,9 @@ export async function createDonationHandler(
     const donation = {
       ...result.data,
       donorId: userId,
+      status: "available",
+      receivers: null,
+      isClaimed: false,
       createdAt: new Date().toISOString(),
     };
 

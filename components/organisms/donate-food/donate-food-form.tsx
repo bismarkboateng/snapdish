@@ -29,25 +29,25 @@ import { CreateDonationDTO } from "@/features/donations/types";
 export const DonateFoodForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  
+
   const form = useForm<DonationFormData>({
     resolver: zodResolver(donationSchema),
     defaultValues: donationFormInitialValues,
   });
-  
-  const { currentStep, setCurrentStep, nextStep, prevStep } =
-  useDonateFoodSteps(form);
 
-  const { mutate: createDonation } = useCreateDonation({ 
-    form, 
-    setCurrentStep, 
-    setSubmitSuccess, 
-    setIsSubmitting 
+  const { currentStep, setCurrentStep, nextStep, prevStep } =
+    useDonateFoodSteps(form);
+
+  const { mutate: createDonation } = useCreateDonation({
+    form,
+    setCurrentStep,
+    setSubmitSuccess,
+    setIsSubmitting,
   });
 
   const onSubmit = async (data: DonationFormData) => {
     setIsSubmitting(true);
-    
+
     const donationData: CreateDonationDTO = {
       title: data.title,
       description: data.description,
@@ -62,7 +62,7 @@ export const DonateFoodForm = () => {
       dietaryInfo: data.dietaryInfo || [],
       specialInstructions: data.specialInstructions,
     };
-    
+
     createDonation(donationData);
   };
 
@@ -115,7 +115,12 @@ export const DonateFoodForm = () => {
                   type="button"
                   onClick={(e) => {
                     e.preventDefault();
-                    console.log("Next Step clicked! Current step:", currentStep, "Steps length:", steps.length);
+                    console.log(
+                      "Next Step clicked! Current step:",
+                      currentStep,
+                      "Steps length:",
+                      steps.length
+                    );
                     nextStep();
                   }}
                   className="bg-[#009379] hover:bg-[#007566] text-white"

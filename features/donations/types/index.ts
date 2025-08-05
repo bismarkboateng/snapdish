@@ -1,5 +1,6 @@
 import { DonationFormData } from "@/components/organisms/donate-food/donate-food.types";
 import { UseFormReturn } from "react-hook-form";
+import { Models } from "node-appwrite";
 
 export interface CreateDonationDTO {
   title: string;
@@ -26,6 +27,11 @@ export interface DonationResponse extends CreateDonationDTO {
   $sequence: number;
   $databaseId: string;
   $collectionId: string;
+}
+
+export interface AppwriteDonationsResponse {
+  total: number;
+  documents: Models.Document[];
 }
 
 export interface UseCreateDonationProps {

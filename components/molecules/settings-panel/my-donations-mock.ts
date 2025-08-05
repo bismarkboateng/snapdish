@@ -5,11 +5,20 @@ export interface Donation {
   foodType: string;
   quantity: string;
   location: string;
-  status: "active" | "claimed" | "expired";
-  createdAt: string;
   expiresAt: string;
-  image: string;
-  tags: string[];
+  availablePickupTimes: string;
+  contactMethod: "email" | "phone" | "both";
+  phone?: string;
+  email?: string;
+  dietaryInfo: string[];
+  specialInstructions?: string;
+  donorId: string;
+  status: "active" | "claimed" | "expired";
+  receivers: string[] | null;
+  createdAt: string;
+  isClaimed: boolean;
+  image?: string;
+  tags?: string[];
   recipient?: {
     name: string;
     avatar: string;
@@ -28,12 +37,15 @@ export const mockDonations: Donation[] = [
     status: "claimed",
     createdAt: "2024-01-15T10:30:00Z",
     expiresAt: "2024-01-16T18:00:00Z",
-    image: "/food-images/lasagna.jpg",
-    tags: ["Vegetarian", "Homemade", "Italian"],
-    recipient: {
-      name: "Sarah Johnson",
-      avatar: "/avatars/sarah.jpg",
-    },
+    availablePickupTimes: "2 PM - 6 PM",
+    contactMethod: "email",
+    email: "donor1@example.com",
+    dietaryInfo: ["Vegetarian", "Contains Dairy"],
+    specialInstructions: "Please bring your own container.",
+    donorId: "donor-1",
+    receivers: null,
+    isClaimed: true,
+    
   },
   {
     id: "2",
@@ -46,21 +58,35 @@ export const mockDonations: Donation[] = [
     status: "active",
     createdAt: "2024-01-14T08:00:00Z",
     expiresAt: "2024-01-15T20:00:00Z",
-    image: "/food-images/bread.jpg",
-    tags: ["Fresh", "Bakery", "Multiple Types"],
+    availablePickupTimes: "8 AM - 6 PM",
+    contactMethod: "phone",
+    phone: "+233501234567",
+    dietaryInfo: ["Contains Gluten"],
+    specialInstructions: "Pickup from back entrance.",
+    donorId: "donor-2",
+    receivers: null,
+    isClaimed: false,
+   
   },
   {
     id: "3",
     title: "Organic Fruit Salad",
     description: "Freshly prepared fruit salad with seasonal organic fruits.",
-    foodType: "Dessert/Snack",
+    foodType: "Fresh Fruits",
     quantity: "8 portions",
     location: "Green Valley Market",
     status: "expired",
     createdAt: "2024-01-10T12:00:00Z",
     expiresAt: "2024-01-11T15:00:00Z",
-    image: "/food-images/fruit-salad.jpg",
-    tags: ["Organic", "Healthy", "Fresh"],
+    availablePickupTimes: "12 PM - 6 PM",
+    contactMethod: "both",
+    phone: "+233501234568",
+    email: "greenvalleys@example.com",
+    dietaryInfo: ["Vegan", "Gluten Free"],
+    specialInstructions: "Keep refrigerated.",
+    donorId: "donor-3",
+    receivers: null,
+    isClaimed: false,
   },
   {
     id: "4",
@@ -73,7 +99,13 @@ export const mockDonations: Donation[] = [
     status: "active",
     createdAt: "2024-01-16T16:30:00Z",
     expiresAt: "2024-01-17T12:00:00Z",
-    image: "/food-images/curry.jpg",
-    tags: ["Indian", "Spicy", "Restaurant Quality"],
+    availablePickupTimes: "5 PM - 9 PM",
+    contactMethod: "email",
+    email: "spicegarden@example.com",
+    dietaryInfo: ["Contains Dairy", "Spicy"],
+    specialInstructions: "Please bring large containers.",
+    donorId: "donor-4",
+    receivers: null,
+    isClaimed: false,
   },
 ];

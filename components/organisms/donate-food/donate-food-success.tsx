@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { CheckCircle } from "lucide-react";
+import Link from "next/link";
 
 const DonateFoodSuccess = () => {
   return (
@@ -21,9 +22,24 @@ const DonateFoodSuccess = () => {
         Donation Submitted Successfully!
       </h2>
       <p className="text-[#6e6e6e] max-w-md">
-        Thank you for your generous donation. We&apos;ll connect you with someone in
-        need soon.
+        Thank you for your generous donation. We&apos;ll connect you with
+        someone in need soon.
       </p>
+      <div className="flex items-center mt-8">
+        <Link
+          href="/dashboard"
+          className="bg-[#009379] text-white px-6 py-3 rounded-lg hover:bg-[#007566] transition-colors duration-300"
+        >
+          View Dashboard
+        </Link>
+        <span className="mx-2 text-gray-500">|</span>
+        <Link
+          href="/dashboard/settings/my-donations"
+          className="text-gray-500 hover:text-underline"
+        >
+          View My Donations
+        </Link>
+      </div>
     </motion.div>
   );
 };

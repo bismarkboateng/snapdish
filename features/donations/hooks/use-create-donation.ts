@@ -1,5 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
 import {
   CreateDonationDTO,
   DonationResponse,
@@ -14,20 +13,11 @@ export const useCreateDonation = ({
   setSubmitSuccess,
   setIsSubmitting,
 }: UseCreateDonationProps) => {
-  const router = useRouter();
-
   return useMutation<DonationResponse, Error, CreateDonationDTO>({
     mutationFn: createDonation,
     onSuccess: () => {
       setSubmitSuccess(true);
       setIsSubmitting(false);
-
-      setTimeout(() => {
-        form.reset();
-        setCurrentStep(0);
-        setSubmitSuccess(false);
-        router.push("/dashboard/my-donations");
-      }, 2000);
     },
     onError: (error) => {
       setIsSubmitting(false);
