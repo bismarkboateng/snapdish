@@ -7,6 +7,7 @@ import MyDonationsSearchFilter from "@/components/organisms/my-donations/my-dona
 
 import useDonations from "./use-donations";
 import { GlobalLoader } from "@/components/molecules/global-loader/global-loader";
+import { Button } from "@/components/atoms/button";
 
 const MyDonations = () => {
   const {
@@ -59,15 +60,17 @@ const MyDonations = () => {
               <p className="text-[var(--color-text-muted)] mb-6">
                 Try adjusting your search or filter criteria
               </p>
-              <button
+              <Button
+                variant="default"
                 onClick={() => {
                   setSearchTerm("");
                   setStatusFilter("all");
                 }}
-                className="px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-primary-dark)] transition-colors duration-200"
+                className="px-4 py-2 bg-[#009379] text-white rounded-lg hover:bg-[var(--color-primary-dark)]
+                transition-colors duration-200 cursor-pointer"
               >
                 Clear Filters
-              </button>
+              </Button>
             </div>
           </div>
         )}

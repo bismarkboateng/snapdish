@@ -3,10 +3,16 @@ import React from "react";
 const MyRequestsStats = ({
   stats,
 }: {
-  stats: { total: number; open: number; fulfilled: number; cancelled: number };
+  stats: {
+    total: number;
+    active: number;
+    claimed: number;
+    expired: number;
+    requested: number;
+  };
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
       <div className="bg-background-secondary rounded-xl p-4 border border-border-light">
         <div className="text-2xl font-bold text-text-primary">
           {stats.total}
@@ -15,21 +21,27 @@ const MyRequestsStats = ({
       </div>
       <div className="bg-background-secondary rounded-xl p-4 border border-border-light">
         <div className="text-2xl font-bold text-accent-orange">
-          {stats.open}
+          {stats.active}
         </div>
-        <div className="text-text-secondary text-sm">Open</div>
+        <div className="text-text-secondary text-sm">Active</div>
       </div>
       <div className="bg-background-secondary rounded-xl p-4 border border-border-light">
         <div className="text-2xl font-bold text-accent-green">
-          {stats.fulfilled}
+          {stats.claimed}
         </div>
-        <div className="text-text-secondary text-sm">Fulfilled</div>
+        <div className="text-text-secondary text-sm">Claimed</div>
       </div>
       <div className="bg-background-secondary rounded-xl p-4 border border-border-light">
         <div className="text-2xl font-bold text-accent-red">
-          {stats.cancelled}
+          {stats.expired}
         </div>
-        <div className="text-text-secondary text-sm">Cancelled</div>
+        <div className="text-text-secondary text-sm">Expired</div>
+      </div>
+      <div className="bg-background-secondary rounded-xl p-4 border border-border-light">
+        <div className="text-2xl font-bold text-accent-yellow">
+          {stats.requested}
+        </div>
+        <div className="text-text-secondary text-sm">Requested</div>
       </div>
     </div>
   );

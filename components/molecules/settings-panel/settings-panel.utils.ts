@@ -20,17 +20,19 @@ export const menuItems = [
 ];
 
 export const getStatusColor = (status: Donation["status"]) => {
-  switch (status) {
-    case "active":
-      return "bg-[var(--color-status-success)]/10 text-[var(--color-status-success)] border-[var(--color-status-success)]/20";
-    case "claimed":
-      return "bg-[var(--color-primary)]/10 text-[var(--color-primary)] border-[var(--color-primary)]/20";
-    case "expired":
-      return "bg-[var(--color-text-muted)]/10 text-[var(--color-text-muted)] border-[var(--color-text-muted)]/20";
-    default:
-      return "bg-[var(--color-background)] text-[var(--color-text-muted)] border-[var(--color-border)]";
-  }
-};
+    switch (status) {
+      case "active":
+        return "bg-[var(--color-status-success)]/10 text-[var(--color-status-success)] border-[var(--color-status-success)]/20";
+      case "claimed":
+        return "bg-[var(--color-primary)]/10 text-[var(--color-primary)] border-[var(--color-primary)]/20";
+      case "expired":
+        return "bg-[var(--color-text-muted)]/10 text-[var(--color-text-muted)] border-[var(--color-text-muted)]/20";
+      case "requested":
+        return "bg-[var(--color-status-warning)]/10 text-[var(--color-status-warning)] border-[var(--color-status-warning)]/20";
+      default:
+        return "bg-[var(--color-background)] text-[var(--color-text-muted)] border-[var(--color-border)]";
+    }
+  };
 
 export const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString("en-US", {

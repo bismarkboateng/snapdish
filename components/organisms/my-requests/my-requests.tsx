@@ -4,6 +4,7 @@ import { RequestCard } from "@/components/molecules/settings-panel/request-card"
 import MyRequestsStats from "./my-requests-stats";
 import MyRequestsSearchFilter from "./my-requests-search-filter";
 import { useMyRequests } from "./use-my-requests";
+import { GlobalLoader } from "@/components/molecules/global-loader/global-loader";
 
 const MyRequests = () => {
   const {
@@ -14,7 +15,14 @@ const MyRequests = () => {
     filteredRequests,
     stats,
     clearFilters,
+    isPending,
   } = useMyRequests();
+
+  if (isPending) {
+    return (
+      <GlobalLoader isVisible={isPending} message="Loading your requests" />
+    );
+  }
 
   return (
     <div className="space-y-6">

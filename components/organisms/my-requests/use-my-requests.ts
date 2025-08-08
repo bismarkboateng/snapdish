@@ -1,16 +1,33 @@
 import { useState, useMemo } from "react";
-import { mockRequests } from "@/components/molecules/settings-panel/my-requests-mock";
+import { useGetMyRequestedDonations } from "@/features/donations/hooks/use-get-my-requested-donations";
+import { adaptAppwriteDonations } from "../my-donations/my-donations-adapter";
+import { Donation } from "../my-donations/my-donations.types";
 
 export const useMyRequests = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
 
+  const { data: requestedDonations, isPending } = useGetMyRequestedDonations();
+
+  const requestedDonationsData: Donation[] = useMemo(() => {
+    if (Array.isArray(requestedDonations)) {
+      return adaptAppwriteDonations(requestedDonations);
+    }
+
+    if (
+      requestedDonations?.documents &&
+      Array.isArray(requestedDonations.documents)
+    ) {
+      return adaptAppwriteDonations(requestedDonations.documents);
+    }
+
+    return [];
+  }, [requestedDonations]);
+
   const filteredRequests = useMemo(() => {
-    return mockRequests.filter((request) => {
+    return requestedDonationsData.filter((request) => {
       const matchesSearch =
-        request.requestedFoodTypes.some((item: string) =>
-          item.toLowerCase().includes(searchTerm.toLowerCase())
-        ) ||
+        request.foodType.toLowerCase().includes(searchTerm.toLowerCase()) ||
         request.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         request.title.toLowerCase().includes(searchTerm.toLowerCase());
 
@@ -19,20 +36,25 @@ export const useMyRequests = () => {
 
       return matchesSearch && matchesStatus;
     });
-  }, [searchTerm, statusFilter]);
+  }, [searchTerm, statusFilter, requestedDonationsData]);
 
   const stats = useMemo(() => {
-    const total = mockRequests.length;
-    const open = mockRequests.filter((r) => r.status === "open").length;
-    const fulfilled = mockRequests.filter(
-      (r) => r.status === "fulfilled"
+    const total = requestedDonationsData.length;
+    const active = requestedDonationsData.filter(
+      (r) => r.status === "active"
     ).length;
-    const cancelled = mockRequests.filter(
-      (r) => r.status === "cancelled"
+    const claimed = requestedDonationsData.filter(
+      (r) => r.status === "claimed"
+    ).length;
+    const expired = requestedDonationsData.filter(
+      (r) => r.status === "expired"
+    ).length;
+    const requested = requestedDonationsData.filter(
+      (r) => r.status === "requested"
     ).length;
 
-    return { total, open, fulfilled, cancelled };
-  }, []);
+    return { total, active, claimed, expired, requested };
+  }, [requestedDonationsData]);
 
   const clearFilters = () => {
     setSearchTerm("");
@@ -40,6 +62,7 @@ export const useMyRequests = () => {
   };
 
   return {
+    isPending,
     searchTerm,
     setSearchTerm,
     statusFilter,
