@@ -4,6 +4,7 @@ import { account } from "@/appwrite/config";
 import { validateRegistrationInput } from "@/appwrite/auth/auth-validations";
 
 import { handleAppwriteError } from "../auth-handlers";
+import { createUserHandler } from "@/appwrite/users/handlers/create-user";
 
 export async function registerUserHandler(
   request: Request
@@ -24,6 +25,14 @@ export async function registerUserHandler(
     const { fullName, email, password } = result.data;
 
     const user = await account.create(ID.unique(), email, password, fullName);
+
+    await createUserHandler({
+      id: user.$id,
+      fullName: user.name,
+      email: user.email,
+      phone: "",
+      profilePic: "",
+    });
 
     return NextResponse.json(
       {

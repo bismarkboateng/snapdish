@@ -5,4 +5,5 @@ export const DATABASE_ID = process.env.DATABASE_ID!;
 
 export const COLLECTIONS = {
   DONATIONS: process.env.DONATION_COLLECTION_ID!,
+  USERS: process.env.USERS_COLLECTION_ID!,
 };
