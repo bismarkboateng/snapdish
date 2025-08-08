@@ -3,5 +3,4 @@ export interface CreateUserHandlerProps {
     fullName: string;
     email: string;
     phone: string;
-    profilePic: string;
 }

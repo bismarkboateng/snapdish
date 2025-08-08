@@ -11,26 +11,26 @@ import {
 import { Input } from "@/components/atoms/input";
 import { Button } from "@/components/atoms/button";
 import { useForm } from "react-hook-form";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import { format } from "date-fns";
 import {
   ProfileFormValues,
   profileInfoInitialValues,
   profileInfoSchema,
 } from "./profile-info-schema";
+import { useUpdateUser } from "@/features/users/hooks/use-update-user";
+import { Loader2 } from "lucide-react";
 
 export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
+  const { mutate: updateUser, isPending } = useUpdateUser();
   const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileInfoSchema),
     defaultValues: profileInfoInitialValues,
   });
 
   const onSubmit = (values: ProfileFormValues) => {
-    console.log("Updated Profile:", values);
-    // Send to API or backend handler
+    updateUser(values);
   };
-
-  const joinedDate = new Date(2023, 0, 15);
 
   return (
     <Form {...form}>
@@ -91,14 +91,20 @@ export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
           )}
         />
 
-        <div className="text-sm text-muted-foreground">
-          Joined on{" "}
-          <span className="font-medium">{format(joinedDate, "PPP")}</span>
-        </div>
-
         {isEditing && (
-          <Button type="submit" disabled={form.formState.isSubmitting}>
-            Save
+          <Button
+            className="text-sm bg-[#009379] cursor-pointer hover:bg-[#007f6a] transition-colors duration-300"
+            type="submit"
+            disabled={form.formState.isSubmitting}
+          >
+            {isPending ? (
+              <div className="flex items-center justify-center text-sm">
+                <Loader2 className="animate-spin w-5 h-5 mr-2" />
+                Updating Profile...
+              </div>
+            ) : (
+              "Save"
+            )}
           </Button>
         )}
       </form>

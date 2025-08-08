@@ -1,10 +1,10 @@
 const AUTH_BASE = `/api/auth`;
-// const USER_BASE = `/user`;
+const USER_BASE = `/api/users`;
 const DONATION_BASE = `/api/donations`;
 // const SETTINGS_BASE = `/settings`;
 
 const withAuth = (path: string) => `${AUTH_BASE}${path}`;
-// const withUser = (path: string) => `${USER_BASE}${path}`;
+const withUser = (path: string) => `${USER_BASE}${path}`;
 const withDonations = (path = "") => `${DONATION_BASE}${path}`;
 // const withSettings = (path = "") => `${SETTINGS_BASE}${path}`;
 
@@ -21,11 +21,11 @@ export const apiRoutes = {
     // callback: withAuth("/callback"),
   },
 
-  //   user: {
-  //     me: withUser("/me"),
-  //     update: withUser("/update"),
-  //     delete: withUser("/delete"),
-  //   },
+    users: {
+      // me: withUser("/me"),
+      update: withUser("/update"),
+      // delete: withUser("/delete"),
+    },
 
     donations: {
       all: withDonations(),

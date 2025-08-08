@@ -16,7 +16,6 @@ export async function createUserHandler(data: CreateUserHandlerProps) {
         fullName: data.fullName,
         email: data.email,
         phone: "",
-        profilePic: "",
         createdAt: new Date().toISOString(),
       }
     );

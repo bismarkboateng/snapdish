@@ -31,7 +31,6 @@ export async function registerUserHandler(
       fullName: user.name,
       email: user.email,
       phone: "",
-      profilePic: "",
     });
 
     return NextResponse.json(

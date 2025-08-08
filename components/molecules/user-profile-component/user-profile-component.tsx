@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/atoms/card";
 import { ProfileInfoForm } from "./profile-info-form";
-import { ProfileImageUpload } from "./profile-image-upload";
 import { Pencil, X } from "lucide-react";
 
 const UserProfileComponent = () => {
@@ -28,8 +27,7 @@ const UserProfileComponent = () => {
             {isEditing ? <X className="w-4 h-4" /> : <Pencil className="w-4 h-4" />}
           </Button>
         </CardHeader>
-        <CardContent className="space-y-6">
-          <ProfileImageUpload />
+        <CardContent className="space-y-6">  
           <ProfileInfoForm isEditing={isEditing} />
         </CardContent>
       </Card>
