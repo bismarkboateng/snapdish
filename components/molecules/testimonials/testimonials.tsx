@@ -59,7 +59,7 @@ export const Testimonials = () => {
           </p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-3 mb-16">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
@@ -102,7 +102,10 @@ export const Testimonials = () => {
                   </div>
 
                   <div className="flex-1">
-                    <div className="font-bold text-[var(--color-text-primary)] text-lg group-hover:text-[var(--color-primary)] transition-colors duration-300">
+                    <div
+                      className="font-bold text-[var(--color-text-primary)] text-lg group-hover:text-[var(--color-primary)]
+                    transition-colors duration-300"
+                    >
                       {testimonial.name}
                     </div>
                     <div className="text-[var(--color-text-muted)] text-sm font-medium">
@@ -129,9 +132,11 @@ export const Testimonials = () => {
                   </div>
                 </div>
 
-                <div className="absolute bottom-0 left-0 w-0 h-1.5 bg-gradient-to-r
+                <div
+                  className="absolute bottom-0 left-0 w-0 h-1.5 bg-gradient-to-r
                 from-[var(--color-primary)] to-[var(--color-primary-dark)] group-hover:w-full
-                transition-all duration-700 rounded-b-3xl" />
+                transition-all duration-700 rounded-b-3xl"
+                />
 
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
               </div>

@@ -18,7 +18,8 @@ export const Impact: React.FC = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-[var(--color-secondary-light)] text-[var(--color-primary-dark)] text-sm font-medium mb-6 shadow-[var(--shadow-default)]">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-[var(--color-secondary-light)] text-[var(--color-primary-dark)] text-sm font-medium
+          mb-6 shadow-[var(--shadow-default)]">
             <span className="w-2 h-2 bg-[var(--color-success)] rounded-full mr-2 animate-pulse"></span>{" "}
             Real Impact
           </div>
@@ -63,7 +64,7 @@ export const Impact: React.FC = () => {
             </p>
             <Link
               href="/register"
-              className="group inline-flex items-center px-8 py-4 text-lg font-semibold text-white rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              className="group inline-flex items-center px-6 py-3 md:px-7 md:py-3 lg:px-8 lg:py-4 text-base md:text-[1.05rem] lg:text-lg font-semibold text-white rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl whitespace-nowrap"
               style={{
                 background: `linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)`,
                 boxShadow: "var(--shadow-default)",

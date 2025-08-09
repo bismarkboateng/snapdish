@@ -21,9 +21,9 @@ export const CustomPieChart = ({
           <Pie
             data={data}
             cx="50%"
-            cy="50%"
-            innerRadius={60}
-            outerRadius={100}
+            cy="45%"
+            innerRadius={50}
+            outerRadius={85}
             paddingAngle={2}
             dataKey="value"
           >
@@ -40,9 +40,12 @@ export const CustomPieChart = ({
             }}
           />
           <Legend
+            verticalAlign="bottom"
+            height={36}
             wrapperStyle={{
               fontSize: "12px",
               color: "#6e6e6e",
+              paddingTop: "20px",
             }}
           />
         </PieChart>

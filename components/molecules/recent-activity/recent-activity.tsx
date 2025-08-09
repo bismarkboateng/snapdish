@@ -14,19 +14,19 @@ export const RecentActivity = ({
 }: RecentActivityProps) => {
   return (
     <div
-      className={`bg-white rounded-2xl border border-[#e5e7eb] p-6 ${className}`}
+      className={`bg-white rounded-2xl border border-[#e5e7eb] p-4 sm:p-6 ${className}`}
     >
-      <h3 className="text-lg font-semibold text-[#1f1f1f] mb-4">
+      <h3 className="text-base sm:text-lg font-semibold text-[#1f1f1f] mb-4">
         Recent Activity
       </h3>
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {activities.map((activity, index) => (
           <motion.div
             key={activity.id}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="flex items-start gap-4 p-4 rounded-xl hover:bg-[#f5fefe] transition-colors duration-200"
+            className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl hover:bg-[#f5fefe] transition-colors duration-200"
           >
             <Avatar className="w-10 h-10">
               <div className="w-full h-full bg-[#009379] text-white rounded-full flex items-center justify-center text-sm font-medium">
@@ -48,21 +48,21 @@ export const RecentActivity = ({
                 )}
               </div>
 
-              <p className="font-medium text-[#1f1f1f] truncate">
+              <p className="font-medium text-[#1f1f1f] break-words line-clamp-2">
                 {activity.title}
               </p>
-              <p className="text-sm text-[#6e6e6e] mb-2">
+              <p className="text-sm text-[#6e6e6e] mb-2 break-words line-clamp-2">
                 {activity.description}
               </p>
 
-              <div className="flex items-center gap-4 text-xs text-[#6e6e6e]">
-                <div className="flex items-center gap-1">
-                  <MapPin className="w-3 h-3" />
-                  <span className="truncate">{activity.location}</span>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs text-[#6e6e6e]">
+                <div className="flex items-center gap-1 min-w-0">
+                  <MapPin className="w-3 h-3 shrink-0" />
+                  <span className="break-words line-clamp-1">{activity.location}</span>
                 </div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 shrink-0">
                   <Clock className="w-3 h-3" />
-                  <span>{activity.timestamp}</span>
+                  <span className="whitespace-nowrap">{activity.timestamp}</span>
                 </div>
               </div>
             </div>

@@ -49,7 +49,7 @@ export const HowItWorks = () => {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3 mb-16">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
           {howItWorksData.map((step, index) => (
             <div key={step.title} className="group relative">
               {index < howItWorksData.length - 1 && (
@@ -85,7 +85,10 @@ export const HowItWorks = () => {
                 </div>
 
                 <div className="relative mb-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-[var(--color-secondary-light)] to-[var(--color-primary-light)] rounded-2xl flex items-center justify-center text-4xl mb-4 mx-auto group-hover:scale-110 transition-transform duration-300 relative overflow-hidden">
+                  <div
+                    className="w-20 h-20 bg-gradient-to-br from-[var(--color-secondary-light)] to-[var(--color-primary-light)] rounded-2xl flex items-center justify-center text-4xl mb-4 mx-auto group-hover:scale-110
+                  transition-transform duration-300 relative overflow-hidden"
+                  >
                     {step.icon}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
                   </div>
