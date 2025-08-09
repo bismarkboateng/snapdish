@@ -89,3 +89,16 @@ export const resetPassword = async ({
     throw new Error("An unexpected error occurred during reset password");
   }
 };
+
+export const logout = async () => {
+  try {
+    const result = await http.post(apiRoutes.auth.logout, {});
+    if ("data" in result) return;
+    return Promise.reject(new Error(result.message ?? "Logout failed"));
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("An unexpected error occurred during logout");
+  }
+};

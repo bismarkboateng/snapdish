@@ -12,7 +12,7 @@ export const apiRoutes = {
   auth: {
     register: withAuth("/register"),
     login: withAuth("/login"),
-    // logout: withAuth("/logout"),
+    logout: withAuth("/logout"),
     // refresh: withAuth("/refresh"),
     forgotPassword: withAuth("/forgot-password"),
     resetPassword: withAuth("/reset-password"),

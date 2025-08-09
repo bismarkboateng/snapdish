@@ -8,14 +8,14 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
 } from "@/components/atoms/sidebar";
 import { items } from "./app-sidebar.utils";
 
 import { usePathname } from "next/navigation";
-import { LogOut, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import Logo from "@/components/molecules/logo/logo";
 import { SidebarMenuItemComponent } from "./sidebar-menu-item";
+import LogoutButton from "./logout-button";
 
 export default function AppSidebar() {
   const pathname = usePathname();
@@ -67,16 +67,7 @@ export default function AppSidebar() {
       </SidebarContent>
 
       <SidebarFooter className="p-4 border-t border-gray-200">
-        <SidebarMenuButton asChild>
-          <button
-            className="flex items-center gap-3 w-full px-3 py-2 rounded-lg transition-all duration-200 
-            hover:bg-red-50 text-red-600 hover:text-red-700 cursor-pointer group border border-transparent hover:border-red-200"
-            onClick={() => alert("Logging out...")}
-          >
-            <LogOut className="h-4 w-4" />
-            <span className="text-sm font-medium">Logout</span>
-          </button>
-        </SidebarMenuButton>
+        <LogoutButton />
       </SidebarFooter>
     </Sidebar>
   );
