@@ -15,8 +15,8 @@ const UserProfileComponent = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <section className="px-4">
-      <Card>
+    <section className="w-full">
+      <Card className="w-full">
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-lg font-medium">Profile Information</CardTitle>
           <Button
@@ -27,7 +27,7 @@ const UserProfileComponent = () => {
             {isEditing ? <X className="w-4 h-4" /> : <Pencil className="w-4 h-4" />}
           </Button>
         </CardHeader>
-        <CardContent className="space-y-6">  
+        <CardContent className="space-y-6 w-full">  
           <ProfileInfoForm isEditing={isEditing} />
         </CardContent>
       </Card>

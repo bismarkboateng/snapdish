@@ -7,11 +7,15 @@ const SettingsLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="flex w-full">
-      <aside className="w-2/10">
-        <SettingsPanel />
+    <div className="flex flex-col xl:flex-row w-full min-h-screen">
+      <aside className="w-full xl:w-96 border-b lg:border-b-0">
+        <div className="sticky top-16">
+          <SettingsPanel />
+        </div>
       </aside>
-      <main className="w-8/10 px-10">{children}</main>
+      <main className="flex-1 px-4 sm:px-6 lg:px-8 xl:px-10 py-6 lg:py-8">
+        <div className="max-w-4xl mx-auto">{children}</div>
+      </main>
     </div>
   );
 };

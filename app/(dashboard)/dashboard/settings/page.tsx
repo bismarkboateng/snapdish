@@ -1,11 +1,7 @@
-import React from 'react'
+import { redirect } from "next/navigation";
 
 const UserSettings = () => {
-  return (
-    <section className="w-full">
-      manage user settings
-    </section>
-  )
-}
+  redirect("/dashboard/settings/profile");
+};
 
-export default UserSettings
+export default UserSettings;

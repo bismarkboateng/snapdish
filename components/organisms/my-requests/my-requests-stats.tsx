@@ -12,7 +12,7 @@ const MyRequestsStats = ({
   };
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-3 2xl:grid-cols-5 gap-4">
       <div className="bg-background-secondary rounded-xl p-4 border border-border-light">
         <div className="text-2xl font-bold text-text-primary">
           {stats.total}

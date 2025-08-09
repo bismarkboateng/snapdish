@@ -7,7 +7,7 @@ const MyDonationsStats = ({ donations }: { donations: Donation[] }) => {
     return donations.filter((d) => d.status === status).length;
   };
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 2xl:grid-cols-4 gap-4">
       <div className="bg-[var(--color-surface)] rounded-2xl p-4 border border-[var(--color-border)]">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-[var(--color-primary)]/10">
