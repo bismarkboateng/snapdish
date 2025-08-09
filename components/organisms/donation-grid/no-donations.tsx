@@ -4,7 +4,7 @@ import { NoDonationsProps } from "./donation-grid.types";
 
 const NoDonations = ({ searchTerm, filterType }: NoDonationsProps) => {
   return (
-    <Card className="p-12 text-center">
+    <Card className="w-full p-12 text-center">
       <div className="space-y-3">
         <div className="mx-auto w-12 h-12 bg-muted rounded-full flex items-center justify-center">
           <Search className="h-6 w-6 text-muted-foreground" />
