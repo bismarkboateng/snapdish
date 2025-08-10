@@ -1,43 +1,32 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Check } from "lucide-react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import { CheckIcon } from "lucide-react";
 
-interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
-  onCheckedChange?: (checked: boolean) => void;
+import { cn } from "@/lib/utils";
+
+function Checkbox({
+  className,
+  ...props
+}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
+  return (
+    <CheckboxPrimitive.Root
+      data-slot="checkbox"
+      className={cn(
+        "peer border-gray-300 bg-white data-[state=checked]:bg-[#009379] data-[state=checked]:text-white data-[state=checked]:border-[#009379] focus-visible:border-[#009379] focus-visible:ring-[#009379]/50 aria-invalid:ring-red-500/20 aria-invalid:border-red-500 size-4 shrink-0 rounded-[4px] border shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
+        className
+      )}
+      {...props}
+    >
+      <CheckboxPrimitive.Indicator
+        data-slot="checkbox-indicator"
+        className="flex items-center justify-center text-white transition-none"
+      >
+        <CheckIcon className="size-3.5" />
+      </CheckboxPrimitive.Indicator>
+    </CheckboxPrimitive.Root>
+  );
 }
-
-const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ className, onCheckedChange, onChange, ...props }, ref) => {
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      onCheckedChange?.(e.target.checked);
-      onChange?.(e);
-    };
-
-    return (
-      <div className="relative">
-        <input
-          type="checkbox"
-          ref={ref}
-          className={cn(
-            "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 appearance-none bg-background",
-            className
-          )}
-          onChange={handleChange}
-          {...props}
-        />
-        <div className="absolute inset-0 flex items-center justify-center text-current pointer-events-none">
-          <Check className="h-3 w-3 text-primary-foreground opacity-0 peer-checked:opacity-100 transition-opacity" />
-        </div>
-        <div className={cn(
-          "absolute inset-0 rounded-sm transition-colors peer-checked:bg-primary peer-checked:text-primary-foreground",
-          "pointer-events-none"
-        )} />
-      </div>
-    );
-  }
-);
-Checkbox.displayName = "Checkbox";
 
 export { Checkbox };

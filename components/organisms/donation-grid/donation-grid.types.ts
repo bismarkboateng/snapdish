@@ -47,3 +47,15 @@ export interface DonationDocument extends Models.Document {
   isClaimed?: boolean;
   image?: string;
 }
+
+export interface DonationRequest {
+  id: string;
+  fullName: string;
+  email: string;
+}
+
+export interface DonationRequestsManagerProps {
+  donationId: string;
+  isFetchingUserDetails: boolean;
+  requests: DonationRequest[];
+}

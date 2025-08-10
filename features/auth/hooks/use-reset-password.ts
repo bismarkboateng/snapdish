@@ -12,7 +12,7 @@ export const useResetPassword = () => {
   >({
     mutationFn: resetPassword,
     onSuccess: () => {
-      toast(
+      toast.success(
         "Password reset successful! You can now log in with your new password."
       );
       setTimeout(() => {
@@ -20,7 +20,7 @@ export const useResetPassword = () => {
       }, 2000);
     },
     onError: (error) => {
-      toast(`Reset password failed: ${error.message}`);
+      toast.error(`Reset password failed: ${error.message}`);
     },
   });
 };

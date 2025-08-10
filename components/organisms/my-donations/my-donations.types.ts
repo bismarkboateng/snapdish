@@ -1,4 +1,5 @@
 import { Models } from "node-appwrite";
+import { Dispatch, SetStateAction } from "react";
 
 export type DonationStatus = "active" | "claimed" | "expired" | "requested";
 export type ContactMethod = "phone" | "email" | "both";
@@ -69,4 +70,9 @@ export interface MyDonationsSearchFilterProps {
   setSearchTerm: (term: string) => void;
   statusFilter: string;
   setStatusFilter: (status: string) => void;
+}
+
+export interface NoDonationsProps {
+  setSearchTerm: Dispatch<SetStateAction<string>>;
+  setStatusFilter: Dispatch<SetStateAction<string>>;
 }

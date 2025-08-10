@@ -1,11 +1,13 @@
 const AUTH_BASE = `/api/auth`;
 const USER_BASE = `/api/users`;
 const DONATION_BASE = `/api/donations`;
+const REQUEST_BASE = `/api/requests`;
 // const SETTINGS_BASE = `/settings`;
 
 const withAuth = (path: string) => `${AUTH_BASE}${path}`;
 const withUser = (path: string) => `${USER_BASE}${path}`;
 const withDonations = (path = "") => `${DONATION_BASE}${path}`;
+const withRequests = (path = "") => `${REQUEST_BASE}${path}`;
 // const withSettings = (path = "") => `${SETTINGS_BASE}${path}`;
 
 export const apiRoutes = {
@@ -33,6 +35,9 @@ export const apiRoutes = {
       request: withDonations("/request-donation"),
       my: withDonations("/my-donations"),
       myRequested: withDonations("/my-requests"),
+      requestedUserDetails: (id: string) => withRequests(`/${id}`),
+      approveRequest: withRequests("/approve"),
+      declineRequest: withRequests("/decline"),
       // detail: (id: string) => withDonations(`/${id}`),
       // update: (id: string) => withDonations(`/${id}/update`),
       // delete: (id: string) => withDonations(`/${id}/delete`),

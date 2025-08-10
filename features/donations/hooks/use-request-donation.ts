@@ -10,8 +10,11 @@ export const useRequestDonation = (onClose: () => void) => {
     mutationFn: requestDonation,
     onSuccess: () => {
       toast.success("Donation request sent successfully!");
-      onClose();
-      router.push("/dashboard/settings/my-requests");
+
+      setTimeout(() => {
+        onClose();
+        router.push("/dashboard/settings/my-requests");
+      }, 2000);
     },
     onError: (error) => {
       toast.error(`Requesting donation failed: ${error.message}`);

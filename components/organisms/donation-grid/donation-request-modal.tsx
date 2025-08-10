@@ -12,12 +12,17 @@ import {
 import { Separator } from "@/components/atoms/separator";
 import { RequestModalProps } from "./donation-grid.types";
 import { useRequestDonation } from "@/features/donations/hooks/use-request-donation";
+import DonationRequestsManager from "./donation-requests-manager";
+import { useGetRequestedUserDetails } from "@/features/requests/hooks/use-get-requested-user-details";
 
 export default function RequestModal({
   isOpen,
   onClose,
   donation,
 }: Readonly<RequestModalProps>) {
+  const { data: userDetails, isPending: fetchingUserDetails } =
+    useGetRequestedUserDetails(donation?.id ?? "");
+
   const { mutate: requestDonation, isPending } = useRequestDonation(onClose);
   if (!donation) return null;
 
@@ -26,6 +31,10 @@ export default function RequestModal({
       id: donation.id,
     });
   };
+
+  const shouldShowRequestButtons = !["requested", "claimed"].includes(
+    donation.status
+  );
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
@@ -111,19 +120,34 @@ export default function RequestModal({
 
           <Separator />
 
-          <div className="flex gap-2 pt-4">
-            <Button
-              onClick={handleRequest}
-              className={`flex-1 bg-[#009379] hover:bg-[var(--color-primary-dark)] text-white cursor-pointer
-                ${isPending ? "opacity-50 cursor-not-allowed" : ""}`}
-              disabled={isPending}
-            >
-              {isPending ? "Requesting..." : "Request Food"}
-            </Button>
-            <Button variant="outline" onClick={onClose} className="flex-1">
-              Cancel
-            </Button>
-          </div>
+          {shouldShowRequestButtons ? (
+            <div className="flex gap-2 pt-4">
+              <Button
+                onClick={handleRequest}
+                className={`flex-1 bg-[#009379] hover:bg-[var(--color-primary-dark)] text-white cursor-pointer
+                  ${isPending ? "opacity-50 cursor-not-allowed" : ""}`}
+                disabled={isPending}
+              >
+                {isPending ? "Requesting..." : "Request Food"}
+              </Button>
+              <Button variant="outline" onClick={onClose} className="flex-1">
+                Cancel
+              </Button>
+            </div>
+          ) : (
+            <div className="pt-4">
+              <DonationRequestsManager
+                isFetchingUserDetails={fetchingUserDetails}
+                donationId={donation.id}
+                requests={userDetails || []}
+              />
+              <div className="flex justify-end mt-4">
+                <Button variant="outline" onClick={onClose}>
+                  Close
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       </SheetContent>
     </Sheet>

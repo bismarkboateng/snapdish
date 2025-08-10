@@ -16,13 +16,13 @@ export const useLogin = (): LoginUserMutation => {
   return useMutation<LoginUserResponse, Error, LoginUserDTO>({
     mutationFn: loginUser,
     onSuccess: () => {
-      toast("Login successful! Redirecting...");
+      toast.success("Login successful! Redirecting...");
       setTimeout(() => {
         router.push("/dashboard");
       }, 2000);
     },
     onError: () => {
-      toast("Login failed. Please try again!");
+      toast.error("Login failed. Please try again!");
     },
   });
 };

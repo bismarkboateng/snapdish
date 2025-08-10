@@ -9,11 +9,11 @@ export const useLogout = () => {
   return useMutation({
     mutationFn: logout,
     onSuccess: () => {
-      toast("Logout successful");
+      toast.success("Logout successful");
       router.push("/login");
     },
     onError: () => {
-      toast("Logout failed");
+      toast.error("Logout failed");
     },
   });
 };

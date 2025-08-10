@@ -16,13 +16,13 @@ export const useRegister = (): RegisterUserMutation => {
   return useMutation<RegisterUserResponse, Error, RegisterUserDTO>({
     mutationFn: registerUser,
     onSuccess: () => {
-      toast("Registration successful! Redirecting to login..");
+      toast.success("Registration successful! Redirecting to login..");
       setTimeout(() => {
         router.push("/login");
       }, 2000);
     },
     onError: () => {
-      toast("Registration failed. Please try again!");
+      toast.error("Registration failed. Please try again!");
     },  
   });
 };

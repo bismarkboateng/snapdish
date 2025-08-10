@@ -1,12 +1,25 @@
 "use client";
 
-import { Clock, MapPin, Users, Tag, Phone, Mail, Calendar, AlertCircle } from "lucide-react";
+import {
+  Clock,
+  MapPin,
+  Users,
+  Tag,
+  Phone,
+  Mail,
+  Calendar,
+  AlertCircle,
+} from "lucide-react";
 import { DonationCardProps } from "./settings-panel.types";
 import { formatDate, getStatusColor } from "./settings-panel.utils";
 
 export const DonationCard: React.FC<DonationCardProps> = ({ donation }) => {
   return (
-    <div className="bg-[var(--color-surface)] rounded-tr-2xl rounded-tl-2xl border border-[var(--color-border)] shadow-[var(--shadow-card)] overflow-hidden transition-all duration-200 hover:shadow-lg hover:border-[var(--color-primary)]/20">
+    <div
+      className="bg-[var(--color-surface)] rounded-tr-2xl rounded-tl-2xl border
+    border-[var(--color-border)] shadow-[var(--shadow-card)] overflow-hidden transition-all
+    duration-200 hover:shadow-lg hover:border-[var(--color-primary)]/20"
+    >
       <div className="p-4 pb-0">
         <div className="flex items-center justify-between mb-3">
           <span
@@ -95,9 +108,15 @@ export const DonationCard: React.FC<DonationCardProps> = ({ donation }) => {
 
         <div className="flex items-center gap-2 mb-4">
           <div className="p-1.5 rounded-lg bg-[var(--color-accent-blue)]/10">
-            {donation.contactMethod === "email" && <Mail className="h-3.5 w-3.5 text-[var(--color-accent-blue)]" />}
-            {donation.contactMethod === "phone" && <Phone className="h-3.5 w-3.5 text-[var(--color-accent-blue)]" />}
-            {donation.contactMethod === "both" && <Mail className="h-3.5 w-3.5 text-[var(--color-accent-blue)]" />}
+            {donation.contactMethod === "email" && (
+              <Mail className="h-3.5 w-3.5 text-[var(--color-accent-blue)]" />
+            )}
+            {donation.contactMethod === "phone" && (
+              <Phone className="h-3.5 w-3.5 text-[var(--color-accent-blue)]" />
+            )}
+            {donation.contactMethod === "both" && (
+              <Mail className="h-3.5 w-3.5 text-[var(--color-accent-blue)]" />
+            )}
           </div>
           <div>
             <p className="text-xs text-[var(--color-text-muted)]">Contact</p>
@@ -115,7 +134,9 @@ export const DonationCard: React.FC<DonationCardProps> = ({ donation }) => {
               <div className="p-1.5 rounded-lg bg-[var(--color-status-info)]/10">
                 <AlertCircle className="h-3.5 w-3.5 text-[var(--color-status-info)]" />
               </div>
-              <p className="text-xs text-[var(--color-text-muted)]">Dietary Info</p>
+              <p className="text-xs text-[var(--color-text-muted)]">
+                Dietary Info
+              </p>
             </div>
             <div className="flex flex-wrap gap-1 ml-7">
               {donation.dietaryInfo.map((info) => (
@@ -132,39 +153,12 @@ export const DonationCard: React.FC<DonationCardProps> = ({ donation }) => {
 
         {donation.specialInstructions && (
           <div className="mb-4 p-3 bg-[var(--color-background)] rounded-lg border border-[var(--color-border)]">
-            <p className="text-xs text-[var(--color-text-muted)] mb-1">Special Instructions</p>
-            <p className="text-sm text-[var(--color-text-primary)]">{donation.specialInstructions}</p>
-          </div>
-        )}
-
-        {donation.tags && donation.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {donation.tags.map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center px-2 py-1 rounded-md text-xs bg-[var(--color-background)] text-[var(--color-text-muted)] border border-[var(--color-border)]"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {donation.status === "claimed" && donation.recipient && (
-          <div className="bg-[var(--color-primary)]/5 rounded-xl p-3 border border-[var(--color-primary)]/10">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-dark)] rounded-full flex items-center justify-center text-white text-sm font-medium">
-                {donation.recipient.name.charAt(0)}
-              </div>
-              <div>
-                <p className="text-xs text-[var(--color-text-muted)]">
-                  Claimed by
-                </p>
-                <p className="text-sm font-medium text-[var(--color-primary)]">
-                  {donation.recipient.name}
-                </p>
-              </div>
-            </div>
+            <p className="text-xs text-[var(--color-text-muted)] mb-1">
+              Special Instructions
+            </p>
+            <p className="text-sm text-[var(--color-text-primary)]">
+              {donation.specialInstructions}
+            </p>
           </div>
         )}
       </div>

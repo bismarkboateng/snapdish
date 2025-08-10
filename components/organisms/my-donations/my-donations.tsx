@@ -1,13 +1,16 @@
 "use client";
 
 import { DonationCard } from "@/components/molecules/settings-panel/donation-card";
-import { Search } from "lucide-react";
 import MyDonationsStats from "@/components/organisms/my-donations/my-donations-stats";
 import MyDonationsSearchFilter from "@/components/organisms/my-donations/my-donations-search-filter";
-
 import useDonations from "./use-donations";
+
 import { GlobalLoader } from "@/components/molecules/global-loader/global-loader";
 import { Button } from "@/components/atoms/button";
+import { useState } from "react";
+import RequestModal from "../donation-grid/donation-request-modal";
+
+import NoDonations from "./no-donations";
 
 const MyDonations = () => {
   const {
@@ -18,6 +21,7 @@ const MyDonations = () => {
     filteredDonations,
     isPending,
   } = useDonations();
+  const [isRequestModalOpen, setIsRequestModalOpen] = useState<boolean>(false);
 
   if (isPending) {
     return (
@@ -46,33 +50,29 @@ const MyDonations = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
         {filteredDonations.length > 0 ? (
           filteredDonations.map((donation) => (
-            <DonationCard key={donation.id} donation={donation} />
+            <div key={donation.id}>
+              <DonationCard key={donation.id} donation={donation} />
+              <Button
+                size="sm"
+                onClick={() => setIsRequestModalOpen(true)}
+                className="bg-[#009379] w-full hover:bg-[var(--color-primary-dark)]
+              text-white rounded-tr-none rounded-tl-none py-5
+                cursor-pointer"
+              >
+                View
+              </Button>
+              <RequestModal
+                isOpen={isRequestModalOpen}
+                onClose={() => setIsRequestModalOpen(false)}
+                donation={donation}
+              />
+            </div>
           ))
         ) : (
-          <div className="col-span-full">
-            <div className="bg-[var(--color-surface)] rounded-2xl p-12 border border-[var(--color-border)] text-center">
-              <div className="w-16 h-16 bg-[var(--color-text-muted)]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Search className="h-8 w-8 text-[var(--color-text-muted)]" />
-              </div>
-              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-2">
-                No donations found
-              </h3>
-              <p className="text-[var(--color-text-muted)] mb-6">
-                Try adjusting your search or filter criteria
-              </p>
-              <Button
-                variant="default"
-                onClick={() => {
-                  setSearchTerm("");
-                  setStatusFilter("all");
-                }}
-                className="px-4 py-2 bg-[#009379] text-white rounded-lg hover:bg-[var(--color-primary-dark)]
-                transition-colors duration-200 cursor-pointer"
-              >
-                Clear Filters
-              </Button>
-            </div>
-          </div>
+          <NoDonations
+            setSearchTerm={setSearchTerm}
+            setStatusFilter={setStatusFilter}
+          />
         )}
       </div>
     </div>

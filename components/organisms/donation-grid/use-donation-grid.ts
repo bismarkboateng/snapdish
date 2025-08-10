@@ -27,6 +27,7 @@ export const useDonationGrid = (): UseDonationGridReturn => {
     () => filterDonations(donations, searchTerm, filterType),
     [donations, searchTerm, filterType]
   );
+  
 
   return {
     donations,

@@ -9,7 +9,7 @@ export const Impact: React.FC = () => {
   const [sectionRef, isVisible] = useInView(0.2);
 
   return (
-    <section ref={sectionRef} className="relative py-24 overflow-hidden">
+    <section id="impact" ref={sectionRef} className="relative py-24 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-background)] via-[var(--color-secondary-light)]/30 to-[var(--color-primary-light)]/20" />
 
       <div className="absolute top-32 left-16 w-24 h-24 bg-[var(--color-primary)]/10 rounded-full blur-2xl animate-pulse" />

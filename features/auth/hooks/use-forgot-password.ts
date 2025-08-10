@@ -14,11 +14,11 @@ export const useForgotPassword = (
   return useMutation<void, Error, string>({
     mutationFn: forgotPassword,
     onSuccess: () => {
-      toast("Password reset email sent successfully, check your inbox!");
+      toast.success("Password reset email sent successfully, check your inbox!");
       form.reset({ email: "" });
     },
     onError: () => {
-      toast("Forgot password failed. Please try again!");
+      toast.error("Forgot password failed. Please try again!");
     },
   });
 };

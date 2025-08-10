@@ -35,12 +35,11 @@ export const RequestFoodForm = () => {
     setCurrentStep,
   } = useRequestFood(form);
 
-  const onSubmit = async (data: RequestFormData) => {
+  const onSubmit = async () => {
     setIsSubmitting(true);
 
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    console.log("Request submitted:", data);
     setSubmitSuccess(true);
     setIsSubmitting(false);
 

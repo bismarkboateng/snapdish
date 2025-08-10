@@ -6,6 +6,7 @@ export const HowItWorks = () => {
   return (
     <section className="relative py-24 overflow-hidden">
       <div
+        id="how"
         className="absolute inset-0 bg-gradient-to-br from-[var(--color-secondary-light)] via-[var(--color-background)]
       to-[var(--color-primary-light)]/30"
       />

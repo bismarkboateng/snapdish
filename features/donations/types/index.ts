@@ -20,6 +20,7 @@ export interface CreateDonationDTO {
 export interface DonationResponse extends CreateDonationDTO {
   donorId: string;
   createdAt: string;
+  receivedBy: string;
   $id: string;
   $permissions: string[];
   $createdAt: string;

@@ -14,8 +14,7 @@ export const filterDonations = (
         donation.title.toLowerCase().includes(search) ||
         donation.description.toLowerCase().includes(search) ||
         donation.foodType.toLowerCase().includes(search) ||
-        donation.location.toLowerCase().includes(search) ||
-        donation.tags?.some((tag) => tag.toLowerCase().includes(search))
+        donation.location.toLowerCase().includes(search)
     );
   }
 

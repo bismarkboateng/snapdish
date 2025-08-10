@@ -77,7 +77,10 @@ export const DonateFoodForm = () => {
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 md:space-y-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-6 md:space-y-8"
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -119,14 +122,14 @@ export const DonateFoodForm = () => {
                     e.preventDefault();
                     nextStep();
                   }}
-                  className="w-full sm:w-auto bg-[#009379] text-white hover:bg-[var(--color-primary-hover)]"
+                  className="w-full sm:w-auto bg-[#009379] text-white hover:bg-[#009379]/80 cursor-pointer"
                 >
                   Next
                 </Button>
               ) : (
                 <Button
                   type="submit"
-                  className="w-full sm:w-auto bg-[#009379] text-white hover:bg-[var(--color-primary-hover)]"
+                  className="w-full sm:w-auto bg-[#009379] text-white hover:bg-[#009379]/80 cursor-pointer"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Submitting..." : "Submit Donation"}

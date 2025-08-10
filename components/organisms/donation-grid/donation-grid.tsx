@@ -14,13 +14,13 @@ import {
   SelectValue,
 } from "@/components/atoms/select";
 import { Card } from "@/components/atoms/card";
-
 import { useDonationGrid } from "./use-donation-grid";
-import { DonationGridProps } from "./donation-grid.types";
 
+import { DonationGridProps } from "./donation-grid.types";
 import type { Donation } from "@/components/molecules/settings-panel/my-donations-mock";
 import { DonationCard } from "@/components/molecules/settings-panel/donation-card";
 import { SimpleErrorState } from "@/components/molecules/simple-error-state/simple-error-state";
+
 import RequestModal from "./donation-request-modal";
 import NoDonations from "./no-donations";
 import { FOOD_TYPE_FILTERS } from "./donation-grid.constants";
@@ -67,7 +67,10 @@ export function DonationGrid({
       <div className="bg-white rounded-lg border border-gray-200 p-3 md:p-4 mb-4 shadow-sm">
         <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3 xl:gap-4">
           <div className="flex-1 xl:max-w-md">
-            <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="search"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Search Donations
             </label>
             <div className="relative">
@@ -84,11 +87,17 @@ export function DonationGrid({
 
           <div className="flex flex-col sm:flex-row gap-3 xl:flex-shrink-0">
             <div className="min-w-0">
-              <label htmlFor="filter-type" className="block text-sm font-medium text-gray-700 mb-1">
+              <label
+                htmlFor="filter-type"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
                 Food Type
               </label>
               <Select value={filterType} onValueChange={setFilterType}>
-                <SelectTrigger id="filter-type" className="w-full sm:w-48 h-11 border-gray-300">
+                <SelectTrigger
+                  id="filter-type"
+                  className="w-full sm:w-48 h-11 border-gray-300"
+                >
                   <SelectValue placeholder="All types" />
                 </SelectTrigger>
                 <SelectContent>
