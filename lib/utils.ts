@@ -32,3 +32,20 @@ export const testimonials = [
     role: "NGO Worker",
   },
 ];
+
+export const publicRoutes = [
+  "/",
+  "/login",
+  "/register",
+  "/forgot-password",
+  "/reset-password",
+  "/success",
+];
+
+export const authRoutes = [
+    "/login",
+    "/register",
+    "/forgot-password",
+    "/reset-password",
+    "/success",
+  ];

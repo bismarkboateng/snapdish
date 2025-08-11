@@ -1,6 +1,4 @@
 import { DonationGrid } from "@/components/organisms/donation-grid";
-import { Button } from "@/components/atoms/button";
-import { Plus } from "lucide-react";
 
 export default function RequestFoodPage() {
   return (
@@ -16,13 +14,6 @@ export default function RequestFoodPage() {
                 Browse available food donations from your community or create a
                 custom request to get the help you need.
               </p>
-            </div>
-
-            <div className="xl:flex-shrink-0">
-              <Button className="cursor-pointer bg-[#009379] hover:bg-[#007566] text-white flex items-center gap-2 w-full xl:w-auto px-6 py-3 text-base font-medium shadow-lg hover:shadow-xl transition-all duration-200">
-                <Plus className="w-5 h-5" />
-                Create Custom Request
-              </Button>
             </div>
           </div>
         </div>

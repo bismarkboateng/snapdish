@@ -1,8 +1,7 @@
 import { Donation } from "./my-donations.types";
 
 const MyDonationsStats = ({ donations }: { donations: Donation[] }) => {
-
- const getStatusCount = (status: string) => {
+  const getStatusCount = (status: string) => {
     if (status === "all") return donations.length;
     return donations.filter((d) => d.status === status).length;
   };

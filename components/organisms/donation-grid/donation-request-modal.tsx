@@ -8,12 +8,13 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/atoms/sheet";
-
 import { Separator } from "@/components/atoms/separator";
 import { RequestModalProps } from "./donation-grid.types";
+
 import { useRequestDonation } from "@/features/donations/hooks/use-request-donation";
 import DonationRequestsManager from "./donation-requests-manager";
 import { useGetRequestedUserDetails } from "@/features/requests/hooks/use-get-requested-user-details";
+import ApprovedDonation from "./approved-donation";
 
 export default function RequestModal({
   isOpen,
@@ -35,6 +36,12 @@ export default function RequestModal({
   const shouldShowRequestButtons = !["requested", "claimed"].includes(
     donation.status
   );
+
+  const isDonationClaimed = donation.isClaimed;
+  const approvedUser =
+    isDonationClaimed && userDetails && userDetails.length > 0
+      ? userDetails[0]
+      : null;
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
@@ -120,7 +127,11 @@ export default function RequestModal({
 
           <Separator />
 
-          {shouldShowRequestButtons ? (
+          {isDonationClaimed && approvedUser ? (
+            <ApprovedDonation approvedUser={approvedUser} onClose={onClose} />
+          ) : null}
+
+          {!isDonationClaimed && shouldShowRequestButtons ? (
             <div className="flex gap-2 pt-4">
               <Button
                 onClick={handleRequest}
@@ -134,7 +145,9 @@ export default function RequestModal({
                 Cancel
               </Button>
             </div>
-          ) : (
+          ) : null}
+
+          {!isDonationClaimed && !shouldShowRequestButtons ? (
             <div className="pt-4">
               <DonationRequestsManager
                 isFetchingUserDetails={fetchingUserDetails}
@@ -147,7 +160,7 @@ export default function RequestModal({
                 </Button>
               </div>
             </div>
-          )}
+          ) : null}
         </div>
       </SheetContent>
     </Sheet>

@@ -4,6 +4,7 @@ import { RequestCard } from "@/components/molecules/settings-panel/request-card"
 import MyRequestsStats from "./my-requests-stats";
 import MyRequestsSearchFilter from "./my-requests-search-filter";
 import { useMyRequests } from "./use-my-requests";
+
 import { GlobalLoader } from "@/components/molecules/global-loader/global-loader";
 
 const MyRequests = () => {
@@ -45,7 +46,7 @@ const MyRequests = () => {
       />
 
       {filteredRequests.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {filteredRequests.map((request) => (
             <RequestCard key={request.id} request={request} />
           ))}

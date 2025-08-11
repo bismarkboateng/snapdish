@@ -30,7 +30,7 @@ const MyDonations = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 w-full">
       <div className="flex items-start justify-between">
         <div>
           <h1 className="text-2xl font-bold text-text-primary">My Donations</h1>
@@ -47,7 +47,7 @@ const MyDonations = () => {
         setStatusFilter={setStatusFilter}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-6">
         {filteredDonations.length > 0 ? (
           filteredDonations.map((donation) => (
             <div key={donation.id}>

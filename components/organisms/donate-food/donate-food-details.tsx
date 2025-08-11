@@ -15,9 +15,11 @@ import {
   SelectValue,
 } from "@/components/atoms/select";
 import { Textarea } from "@/components/atoms/textarea";
+
 import { UseFormReturn } from "react-hook-form";
 import { DonationFormData } from "./donate-food.types";
 import { foodTypes } from "./donate-food.utils";
+import SpecialInstructions from "./special-instructions";
 
 const DonateFoodDetails = ({
   form,
@@ -26,6 +28,8 @@ const DonateFoodDetails = ({
 }) => {
   return (
     <div className="space-y-6">
+      <SpecialInstructions />
+
       <FormField
         control={form.control}
         name="title"
@@ -37,7 +41,7 @@ const DonateFoodDetails = ({
             <FormControl>
               <Input
                 placeholder="e.g., Fresh vegetables from my garden"
-                className="border-[#e5e7eb] focus:border-[#009379]"
+                className="border-[#49556d] focus:border-[#009379]"
                 {...field}
               />
             </FormControl>

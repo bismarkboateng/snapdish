@@ -59,3 +59,8 @@ export interface DonationRequestsManagerProps {
   isFetchingUserDetails: boolean;
   requests: DonationRequest[];
 }
+
+export interface ApprovedDonationProps {
+  approvedUser: DonationRequest;
+  onClose: () => void;
+}
