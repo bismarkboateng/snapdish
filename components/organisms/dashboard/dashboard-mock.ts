@@ -1,39 +1,3 @@
-import { Heart, Users, Package, Clock } from "lucide-react";
-
-export const statsData = [
-  {
-    title: "Total Donations",
-    value: "2,847",
-    change: "+12% from last month",
-    changeType: "positive" as const,
-    icon: Heart,
-    description: "Food items donated this month",
-  },
-  {
-    title: "Active Requests",
-    value: "156",
-    change: "-8% from last month",
-    changeType: "positive" as const,
-    icon: Users,
-    description: "Current food requests pending",
-  },
-  {
-    title: "Meals Served",
-    value: "8,532",
-    change: "+23% from last month",
-    changeType: "positive" as const,
-    icon: Package,
-    description: "Total meals provided to families",
-  },
-  {
-    title: "Response Time",
-    value: "2.4h",
-    change: "-15% faster",
-    changeType: "positive" as const,
-    icon: Clock,
-    description: "Average time to fulfill requests",
-  },
-];
 
 export const recentActivities = [
   {

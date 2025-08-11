@@ -1,4 +1,4 @@
-import { Home, Heart, HandHeart, Settings } from "lucide-react";
+import { Home, Heart, HandHeart, MessageSquare, Settings } from "lucide-react";
 
 export const items = [
   {
@@ -15,6 +15,11 @@ export const items = [
     title: "Request Food",
     route: "/dashboard/request-food",
     icon: HandHeart,
+  },
+  {
+    title: "Forum",
+    route: "/dashboard/forum",
+    icon: MessageSquare,
   },
   {
     title: "Settings",
