@@ -21,8 +21,8 @@ export const useLogin = (): LoginUserMutation => {
         router.push("/dashboard");
       }, 2000);
     },
-    onError: () => {
-      toast.error("Login failed. Please try again!");
+    onError: (error) => {
+      toast.error(`Login failed: ${error.message}`);
     },
   });
 };

@@ -1,40 +1,36 @@
 import { useState } from "react";
-import { PostData, UseCreatePostModalProps } from "./forum.types";
+import { useCreateReview } from "@/features/forum/hooks/use-create-review";
+import { CreateReviewDTO } from "@/features/forum/types";
+import { UseCreatePostModalProps } from "./forum.types";
 
 export const useCreatePostModal = ({
   onClose,
-  onSubmit,
+  onSuccess,
 }: UseCreatePostModalProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [rating, setRating] = useState(5);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const createReviewMutation = useCreateReview();
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     if (!title.trim() || !content.trim()) return;
 
-    setIsSubmitting(true);
-
-    const newPost: PostData = {
-      userId: "current-user",
-      userName: "Current User",
-      userAvatar:
-        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face",
+    const reviewData: CreateReviewDTO = {
       title: title.trim(),
       content: content.trim(),
       rating,
     };
 
-    onSubmit(newPost);
-
+    await createReviewMutation.mutateAsync(reviewData);
     resetForm();
-    setIsSubmitting(false);
     onClose();
+    onSuccess?.();
   };
 
   const handleClose = () => {
-    if (!isSubmitting) {
+    if (!createReviewMutation.isPending) {
       resetForm();
       onClose();
     }
@@ -46,22 +42,16 @@ export const useCreatePostModal = ({
     setRating(5);
   };
 
-  const updateTitle = (newTitle: string) => setTitle(newTitle);
-  const updateContent = (newContent: string) => setContent(newContent);
-  const updateRating = (newRating: number) => setRating(newRating);
-
   return {
     title,
     content,
     rating,
-    isSubmitting,
-
+    setTitle,
+    setContent,
+    setRating,
     handleSubmit,
     handleClose,
-    updateTitle,
-    updateContent,
-    updateRating,
-
+    isSubmitting: createReviewMutation.isPending,
     isFormValid: !!(title.trim() && content.trim()),
     getRatingLabel: () => {
       switch (rating) {

@@ -107,5 +107,5 @@ export type PostData = Omit<
 
 export interface UseCreatePostModalProps {
   onClose: () => void;
-  onSubmit: (post: PostData) => void;
+  onSuccess?: () => void;
 }

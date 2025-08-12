@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import { Input } from "@/components/atoms/input";
 import { Textarea } from "@/components/atoms/textarea";
 import { RatingField } from "./rating-field";
-import { PhotoUploadField } from "./photo-upload-field";
 import { FormActions } from "./form-actions";
 import { CreatePostFormProps } from "./forum.types";
 
@@ -72,8 +71,6 @@ export const CreatePostForm = ({
           {content.length}/500 characters
         </div>
       </div>
-
-      <PhotoUploadField />
 
       <FormActions
         isSubmitting={isSubmitting}

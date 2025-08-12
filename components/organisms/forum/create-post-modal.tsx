@@ -10,7 +10,7 @@ import { CreatePostForm } from "./create-post-form";
 export const CreatePostModal = ({
   isOpen,
   onClose,
-  onSubmit,
+  onSuccess,
 }: CreatePostModalProps) => {
   const {
     title,
@@ -20,11 +20,11 @@ export const CreatePostModal = ({
     isFormValid,
     handleSubmit,
     handleClose,
-    updateTitle,
-    updateContent,
-    updateRating,
+    setTitle,
+    setContent,
+    setRating,
     getRatingLabel,
-  } = useCreatePostModal({ onClose, onSubmit });
+  } = useCreatePostModal({ onClose, onSuccess });
 
   if (!isOpen) return null;
 
@@ -82,9 +82,9 @@ export const CreatePostModal = ({
               isFormValid={isFormValid}
               getRatingLabel={getRatingLabel}
               onSubmit={handleSubmit}
-              onTitleChange={updateTitle}
-              onContentChange={updateContent}
-              onRatingChange={updateRating}
+              onTitleChange={setTitle}
+              onContentChange={setContent}
+              onRatingChange={setRating}
               onClose={handleClose}
             />
           </motion.div>

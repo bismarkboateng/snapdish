@@ -21,8 +21,8 @@ export const useRegister = (): RegisterUserMutation => {
         router.push("/login");
       }, 2000);
     },
-    onError: () => {
-      toast.error("Registration failed. Please try again!");
+    onError: (error) => {
+      toast.error(`Registration failed: ${error.message}`);
     },  
   });
 };

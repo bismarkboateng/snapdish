@@ -24,7 +24,7 @@ export const Forum = () => {
     openCreateModal,
     closeCreateModal,
     toggleLike,
-    addPost
+    handlePostCreated
   } = useForum();
 
   return (
@@ -80,7 +80,7 @@ export const Forum = () => {
         <CreatePostModal
           isOpen={isCreateModalOpen}
           onClose={closeCreateModal}
-          onSubmit={addPost}
+          onSuccess={handlePostCreated}
         />
       </div>
     </div>

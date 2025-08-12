@@ -3,12 +3,14 @@ const USER_BASE = `/api/users`;
 const DONATION_BASE = `/api/donations`;
 const REQUEST_BASE = `/api/requests`;
 const DASHBOARD_BASE = `/api/dashboard`;
+const FORUM_BASE = `/api/forum`;
 
 const withAuth = (path: string) => `${AUTH_BASE}${path}`;
 const withUser = (path: string) => `${USER_BASE}${path}`;
 const withDonations = (path = "") => `${DONATION_BASE}${path}`;
 const withRequests = (path = "") => `${REQUEST_BASE}${path}`;
 const withDashboard = (path = "") => `${DASHBOARD_BASE}${path}`;
+const withForum = (path = "") => `${FORUM_BASE}${path}`;
 
 export const apiRoutes = {
   auth: {
@@ -35,5 +37,10 @@ export const apiRoutes = {
   },
   dashboard: {
     cardsSummary: withDashboard("/cards-summary"),
+  },
+
+  forum: {
+    createReview: withForum(`/create`),
+    getReviews: (id: string) => withForum(`/${id}/reviews`),
   },
 };
