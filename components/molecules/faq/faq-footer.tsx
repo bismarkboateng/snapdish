@@ -41,7 +41,7 @@ const FaqFooter = () => {
           </Link>
 
           <Link
-            href="/community"
+            href="/dashboard/forum"
             className="group inline-flex items-center px-8 py-4 text-lg font-semibold text-[var(--color-primary)] bg-[var(--color-primary-light)] rounded-2xl hover:bg-[var(--color-primary-light)]/80 transition-all duration-300 hover:scale-105"
           >
             <span className="flex items-center">

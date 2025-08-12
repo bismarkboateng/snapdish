@@ -6,7 +6,7 @@ export const ctaData: CTAData = {
     "Donate today or help spread the word. Every meal shared makes a difference.",
   primaryAction: {
     text: "Donate Food",
-    href: "/donate",
+    href: "/dashboard/donate-food",
   },
   secondaryAction: {
     text: "Learn More",

@@ -1,5 +1,6 @@
 import React from "react";
 import { ctaData } from "./cta.mock";
+import Link from "next/link"
 
 export const CTABanner: React.FC = () => {
   return (
@@ -25,7 +26,7 @@ export const CTABanner: React.FC = () => {
         </div>
         
         <div className="flex flex-col sm:flex-row justify-center gap-6">
-          <a
+          <Link
             href={ctaData.primaryAction.href}
             className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold
             text-[var(--color-primary)] bg-white rounded-2xl hover:bg-[var(--color-secondary-light)]
@@ -37,10 +38,10 @@ export const CTABanner: React.FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </span>
-          </a>
+          </Link>
           
           {ctaData.secondaryAction && (
-            <a
+            <Link
               href={ctaData.secondaryAction.href}
               className="group inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white border-2 border-white/30 rounded-2xl
               hover:border-white hover:bg-white/10 transition-all duration-300 hover:scale-105"
@@ -51,7 +52,7 @@ export const CTABanner: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </span>
-            </a>
+            </Link>
           )}
         </div>
         
