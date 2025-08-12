@@ -2,13 +2,12 @@ import { NextRequest } from "next/server";
 import { databases } from "@/appwrite/config";
 import { COLLECTIONS, DATABASE_ID } from "@/appwrite/const";
 import { parseQueryParams, buildReviewQueries } from "../lib/query-utils";
-
 import { fetchUsersForReviews } from "../lib/user-utils";
 import {
   enrichReviewsWithUserData,
   createSuccessResponse,
+  createErrorResponse,
 } from "../lib/response-utils";
-import { handleAppwriteError } from "@/appwrite/auth/auth-handlers";
 
 export async function getReviewsHandler(request: NextRequest) {
   try {
@@ -23,18 +22,16 @@ export async function getReviewsHandler(request: NextRequest) {
     );
 
     const userMap = await fetchUsersForReviews(reviews.documents);
-
     const enrichedReviews = enrichReviewsWithUserData(
       reviews.documents,
       userMap
     );
-
     return createSuccessResponse({
       reviews: enrichedReviews,
       total: reviews.total,
       hasMore: reviews.total > queryParams.offset + queryParams.limit,
     });
-  } catch (error) {
-    handleAppwriteError(error);
+  } catch {
+    return createErrorResponse("Failed to fetch reviews");
   }
 }

@@ -10,7 +10,7 @@ export const enrichReviewsWithUserData = (
 
     return {
       ...review,
-      authorName: user?.name || "Anonymous User",
+      authorName: user?.fullName || "Anonymous User",
     };
   });
 };

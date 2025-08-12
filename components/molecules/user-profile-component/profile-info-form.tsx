@@ -10,27 +10,30 @@ import {
 } from "@/components/atoms/form";
 import { Input } from "@/components/atoms/input";
 import { Button } from "@/components/atoms/button";
-import { useForm } from "react-hook-form";
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  ProfileFormValues,
-  profileInfoInitialValues,
-  profileInfoSchema,
-} from "./profile-info-schema";
-import { useUpdateUser } from "@/features/users/hooks/use-update-user";
 import { Loader2 } from "lucide-react";
+import { useProfileForm } from "./use-profile-form";
+import { ErrorState } from "../error-state";
 
 export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
-  const { mutate: updateUser, isPending } = useUpdateUser();
-  const form = useForm<ProfileFormValues>({
-    resolver: zodResolver(profileInfoSchema),
-    defaultValues: profileInfoInitialValues,
-  });
+  const { form, defaultValues, isLoading, error, isPending, onSubmit } =
+    useProfileForm();
 
-  const onSubmit = (values: ProfileFormValues) => {
-    updateUser(values);
-  };
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <Loader2 className="animate-spin w-6 h-6" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <ErrorState
+        title={`Failed to load user data: ${error.message}`}
+        message=" Please refresh the page to try again."
+      />
+    );
+  }
 
   return (
     <Form {...form}>
@@ -44,7 +47,7 @@ export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
               <FormControl>
                 <Input
                   disabled={!isEditing}
-                  placeholder="Evans Boadi"
+                  placeholder={defaultValues.fullName || "Enter your full name"}
                   {...field}
                 />
               </FormControl>
@@ -61,9 +64,9 @@ export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
-                  disabled={!isEditing}
+                  disabled={true}
                   type="email"
-                  placeholder="evans@gmail.com"
+                  placeholder={defaultValues.email || "Email address"}
                   {...field}
                 />
               </FormControl>
@@ -82,7 +85,7 @@ export const ProfileInfoForm = ({ isEditing }: { isEditing: boolean }) => {
                 <Input
                   disabled={!isEditing}
                   type="tel"
-                  placeholder="+233591151759"
+                  placeholder={defaultValues.phone || "Enter your phone number"}
                   {...field}
                 />
               </FormControl>

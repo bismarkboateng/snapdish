@@ -23,6 +23,7 @@ export const apiRoutes = {
 
   users: {
     update: withUser("/update"),
+    current: withUser("/current"),
   },
 
   donations: {

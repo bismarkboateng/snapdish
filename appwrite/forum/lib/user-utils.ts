@@ -20,7 +20,7 @@ export const fetchUserById = async (
     const user = userQuery.documents[0];
     return {
       $id: user.$id,
-      name: user.fullName || user.name || "Anonymous User",
+      fullName: user.fullName || "Anonymous User",
     };
   } catch {
     return null;

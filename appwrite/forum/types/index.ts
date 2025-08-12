@@ -19,5 +19,5 @@ export interface EnrichedReview {
 
 export interface UserData {
   $id: string;
-  name: string;
+  fullName: string;
 }
